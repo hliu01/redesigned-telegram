@@ -1,0 +1,15 @@
+ by Redesigned-telegram - Henry Liu(PM), Clement Chan, Yevgeniy Gorbachev, David Xiedeng
+SoftDev1 pd1
+P04: <Project Name>
+2019-04-23
+
+--------------------------------------------------------------------------------
+DESIGN DOC INFO:
+
+v 0.0
+  - Added basic requirements
+
+--------------------------------------------------------------------------------
+
+liuH -- 2020-04-23 18:20
+- Created design doc
