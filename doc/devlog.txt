@@ -13,3 +13,9 @@ v 0.0
 
 liuH -- 2020-04-23 18:20
 - Created design doc
+
+
+liuH -- 2020-04-26 18:20
+- Worked on design DOC
+- Implemented roles
+- Discussed data
