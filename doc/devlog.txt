@@ -19,3 +19,11 @@ liuH -- 2020-04-26 18:20
 - Worked on design DOC
 - Implemented roles
 - Discussed data
+
+liuH -- 2020-04-29 18:20
+- Design doc reviewed by Four_Cs and team Mos and Friends
+- Stated frontend framework that will be used
+- Detailed the functions we will use
+- Have an example of what a graph cell looks like
+- Q: How did your team adjust your timeline to accommodate new deadline?
+- We didn't have to adjust timeline since we hadn't had a deadline yet
