@@ -52,11 +52,11 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 //Graph from https://www.d3-graph-gallery.com/graph/line_basic.html
 //Read the data
-d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covidData/worldwide-aggregatedd.csv",
+d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covidData/countries-aggregated.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), confirmed : d.confirmed }
+    return { date : d3.timeParse("%Y-%m-%d")(d.date), country : d.country, confirmed : d.confirmed }
   },
 
   // Now I can use this dataset:
@@ -76,8 +76,10 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covi
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
+    var value = (function(d) { return x(d.date) })
 
     // Add the line
+    if (value == "China") {
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
@@ -87,6 +89,7 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covi
         .x(function(d) { return x(d.date) })
         .y(function(d) { return y(d.confirmed) })
         )
+      }
 
 })
 
