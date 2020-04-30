@@ -56,8 +56,9 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covi
 
   // When reading the csv, I must format variables:
   function(d){
+    if (d.country == "China") {
     return { date : d3.timeParse("%Y-%m-%d")(d.date), country : d.country, confirmed : d.confirmed }
-  },
+  }},
 
   // Now I can use this dataset:
   function(data) {
@@ -76,10 +77,8 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covi
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y));
-    var value = (function(d) { return x(d.date) })
 
     // Add the line
-    if (value == "China") {
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
@@ -89,7 +88,6 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covi
         .x(function(d) { return x(d.date) })
         .y(function(d) { return y(d.confirmed) })
         )
-      }
 
 })
 
