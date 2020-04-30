@@ -27,3 +27,7 @@ liuH -- 2020-04-29 18:20
 - Have an example of what a graph cell looks like
 - Q: How did your team adjust your timeline to accommodate new deadline?
 - We didn't have to adjust timeline since we hadn't had a deadline yet
+
+liuH -- 2020-04-30 19:20
+- Basic graph made that graphs confirmed cases and deaths
+- Implemented a drop down menu
