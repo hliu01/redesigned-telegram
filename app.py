@@ -9,7 +9,7 @@ arrB = arrTypeB()
 
 @app.route("/")
 def root():
-    return render_template("index.html", arrA = arrA, arrB = arrB)
+    return render_template("index.html", arrA = arrA, arrB = arrB, countryDict = countryIdx, dateDict = dateIdx)
 
 @app.route("/ok")
 def cool():

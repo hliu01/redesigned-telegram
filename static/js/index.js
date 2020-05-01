@@ -51,5 +51,3 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covi
         )
 
 })
-
-console.log(covidA[2])
