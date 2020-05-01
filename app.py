@@ -1,17 +1,19 @@
-import csv
-from flask import Flask, render_template, jsonify
-import os
+from flask import Flask, render_template
+from covidData.process import *
 
 app = Flask(__name__)
+
+arrA = arrTypeA()
+arrB = arrTypeB()
 
 
 @app.route("/")
 def root():
-    return render_template("index.html")
+    return render_template("index.html", arrA = arrA, arrB = arrB)
 
 @app.route("/ok")
 def cool():
-    return render_template("ok.html")
+    return render_template("ok.html", arrA = arrA, arrB = arrB)
 
 if __name__ == "__main__":
     app.debug = True
