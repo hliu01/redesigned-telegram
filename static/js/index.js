@@ -1,4 +1,3 @@
-
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 860 - margin.left - margin.right,
@@ -49,5 +48,6 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covi
         .x(function(d) { return x(d.date) })
         .y(function(d) { return y(d.confirmed) })
         )
+
 
 })

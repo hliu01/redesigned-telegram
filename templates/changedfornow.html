@@ -1,0 +1,49 @@
+<!-- Graph from https://www.d3-graph-gallery.com/graph/line_basic.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Stonks</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <div class="row">
+    <div class="col-md-12 school-options-dropdown text-center">
+      <div class="dropdown btn-group">
+
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a dataset
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+          <li><a href="/">Covid</a></li>
+          <li><a href="#">Currency</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+{{ arrB|safe }}
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+</body>
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+//covidB is country first
+//countryIDk is a dict
+//covidA(countryIDX('US'))
+<script>
+  var covidA = {{ arrA|safe }};
+  var covidB = {{ arrB|safe }};
+  var countryIdx = {{ countryDict|safe }}
+  var dateIdx = {{ dateDict|safe }}
+</script>
+<script src="/static/js/index.js"></script>
+<br>
+
+</html>

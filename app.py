@@ -1,14 +1,19 @@
 from flask import Flask, render_template
 from static.covidData.process import *
+import os
+import csv
 
 app = Flask(__name__)
 
 arrA = arrTypeA()
 arrB = arrTypeB()
 
-
 @app.route("/")
 def root():
+    return render_template("index.html")
+
+@app.route("/changedofnow")
+def chanedfornow():
     return render_template("index.html", arrA = arrA, arrB = arrB, countryDict = countryIdx, dateDict = dateIdx)
 
 @app.route("/ok")
