@@ -1,4 +1,4 @@
- by Redesigned-telegram - Henry Liu(PM), Clement Chan, Yevgeniy Gorbachev, David Xiedeng
+Stonks by Redesigned-telegram - Henry Liu(PM), Clement Chan, Yevgeniy Gorbachev, David Xiedeng
 SoftDev1 pd1
 P04: <Project Name>
 2019-04-23
@@ -38,3 +38,4 @@ liuH -- 2020-04-30 19:20
 chanC -- 2020-04-30 21:00
     - Organized files into proper directories
     - Pass both Covid data arrays to js
+    - Flipped country and date dictionaries
