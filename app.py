@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from covidData.process import *
+from static.covidData.process import *
 
 app = Flask(__name__)
 

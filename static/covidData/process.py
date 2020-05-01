@@ -1,7 +1,7 @@
 import json
 
-countryData = open("./covidData/countries-aggregated.csv", "r").readlines()[1:]
-worldData = open("./covidData/worldwide-aggregated.csv", "r").readlines()[1:]
+countryData = open("./static/covidData/countries-aggregated.csv", "r").readlines()[1:]
+worldData = open("./static/covidData/worldwide-aggregated.csv", "r").readlines()[1:]
 
 #countryData = open("countries-aggregated.csv", "r").readlines()[1:]
 #worldData = open("worldwide-aggregated.csv", "r").readlines()[1:]
