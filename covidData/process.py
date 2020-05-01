@@ -6,24 +6,23 @@ worldData = open("./covidData/worldwide-aggregated.csv", "r").readlines()[1:]
 #countryData = open("countries-aggregated.csv", "r").readlines()[1:]
 #worldData = open("worldwide-aggregated.csv", "r").readlines()[1:]
 
-countryIdx = {0: "World"}
+countryIdx = {"World":0}
 dateIdx = {}
 dateXcountry = []
 countryXdate = []
-def addCountryName(name):
-    if name not in countryIdx.values():
-        countryIdx[len(countryIdx)] = name
-    return list(countryIdx.keys())[list(countryIdx.values()).index(name)]
 
+def addCountryName(name):
+    if name not in countryIdx.keys():
+        countryIdx[name] = len(countryIdx)
+    return countryIdx[name]
 
 def addDate(date):
-    if date not in dateIdx.values():
-        dateIdx[len(dateIdx)] = date
-    return list(dateIdx.keys())[list(dateIdx.values()).index(date)]
+    if date not in dateIdx.keys():
+        dateIdx[date] = len(dateIdx)
+    return dateIdx[date]
 
 
 def arrTypeA():
-
     date = ""
     counter = -1
     for line in countryData:
@@ -55,7 +54,6 @@ def arrTypeA():
     return dateXcountry
 
 def arrTypeB():
-
     # other type
     entry = ['World']
     for x in range(95):
@@ -66,7 +64,6 @@ def arrTypeB():
         worldLine = worldLine[:-1].split(',')
         counter += 1
         countryXdate[0][counter] = worldLine[1:4]
-
     for line in countryData:
         # seperates into array without \n
         line = line[:-1].split(',')
@@ -76,8 +73,9 @@ def arrTypeB():
             for x in range(95):
                 entry.append('')
             countryXdate.append(entry)
+        #addDate2(line[0])
+        #idx = dateIdx[line[0]]
         idx = addDate(line[0]) + 1
-
         if countryXdate[addCountryName(line[1])][idx] != '':
             # should be empty
             print('wat')

@@ -14,7 +14,7 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 //Graph from https://www.d3-graph-gallery.com/graph/line_basic.html
 //Read the data
-d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covidData/worldwide-aggregatedd.csv",
+d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/covidData/worldwide-aggregated.csv",
 
   // When reading the csv, I must format variables:
   function(d){
