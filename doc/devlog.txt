@@ -12,22 +12,29 @@ v 0.0
 --------------------------------------------------------------------------------
 
 liuH -- 2020-04-23 18:20
-- Created design doc
+    - Created design doc
 
 
 liuH -- 2020-04-26 18:20
-- Worked on design DOC
-- Implemented roles
-- Discussed data
+    - Worked on design DOC
+    - Implemented roles
+    - Discussed data
+
+chanC -- 2020-04-26 21:00
+    - Wrote code to process/organize data into accesible arrays
 
 liuH -- 2020-04-29 18:20
-- Design doc reviewed by Four_Cs and team Mos and Friends
-- Stated frontend framework that will be used
-- Detailed the functions we will use
-- Have an example of what a graph cell looks like
-- Q: How did your team adjust your timeline to accommodate new deadline?
-- We didn't have to adjust timeline since we hadn't had a deadline yet
+    - Design doc reviewed by Four_Cs and team Mos and Friends
+    - Stated frontend framework that will be used
+    - Detailed the functions we will use
+    - Have an example of what a graph cell looks like
+    - Q: How did your team adjust your timeline to accommodate new deadline?
+    - We didn't have to adjust timeline since we hadn't had a deadline yet
 
 liuH -- 2020-04-30 19:20
-- Basic graph made that graphs confirmed cases and deaths
-- Implemented a drop down menu
+    - Basic graph made that graphs confirmed cases and deaths
+    - Implemented a drop down menu
+    
+chanC -- 2020-04-30 21:00
+    - Organized files into proper directories
+    - Pass both Covid data arrays to js
