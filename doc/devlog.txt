@@ -34,8 +34,12 @@ liuH -- 2020-04-29 18:20
 liuH -- 2020-04-30 19:20
     - Basic graph made that graphs confirmed cases and deaths
     - Implemented a drop down menu
-    
+
 chanC -- 2020-04-30 21:00
     - Organized files into proper directories
     - Pass both Covid data arrays to js
     - Flipped country and date dictionaries
+
+liuH -- 2020-04-30 21:20
+    - Made a flag
+    - Worked on processing data
