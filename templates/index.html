@@ -24,7 +24,10 @@
           <li><a href="#">Currency</a></li>
         </ul>
 
+        <!-- graph div -->
+
       </div>
+      <div id="my_dataviz" class="container-fluid"></div>
     </div>
   </div>
 
@@ -32,14 +35,15 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
-
 <script>
+// gets div element holding chart
+// used to get flexible dimensions
+var chart = document.getElementById("my_dataviz")
+console.log(chart.offsetWidth)
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 860 - margin.left - margin.right,
+    width = chart.offsetWidth - margin.left - margin.right,
     height = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -50,6 +54,8 @@ var svg = d3.select("#my_dataviz")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+
 //Graph from https://www.d3-graph-gallery.com/graph/line_basic.html
 //Read the data
 d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/static/covidData/worldwide-aggregated.csv",
