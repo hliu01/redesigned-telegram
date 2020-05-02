@@ -46,3 +46,9 @@ liuH -- 2020-04-30 21:20
 
 xiedengD -- 2020-05-02 13:03
     - Made chart generate into dimension of window
+
+xiedengD -- 2020-05-02 13:57
+    - rearranged elements in bootstrap containers
+
+xiedengD -- 2020-05-02 14:26
+  - added button elements but they don't do anything yet
