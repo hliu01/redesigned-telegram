@@ -43,3 +43,6 @@ chanC -- 2020-04-30 21:00
 liuH -- 2020-04-30 21:20
     - Made a flag
     - Worked on processing data
+
+xiedengD -- 2020-05-02 13:03
+    - Made chart generate into dimension of window

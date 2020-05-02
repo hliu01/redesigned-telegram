@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <div class="row">
+  <div class="row; container-fluid">
     <div class="col-md-12 school-options-dropdown text-center">
       <div class="dropdown btn-group">
 
@@ -24,10 +24,11 @@
           <li><a href="#">Currency</a></li>
         </ul>
 
-        <!-- graph div -->
-
       </div>
+
+      <!-- graph div -->
       <div id="my_dataviz" class="container-fluid"></div>
+
     </div>
   </div>
 
@@ -39,7 +40,6 @@
 // gets div element holding chart
 // used to get flexible dimensions
 var chart = document.getElementById("my_dataviz")
-console.log(chart.offsetWidth)
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
