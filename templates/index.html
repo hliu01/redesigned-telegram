@@ -5,31 +5,52 @@
   <title>Stonks</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./static/index.css"
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-  <div class="row; container-fluid">
-    <div class="col-md-12 school-options-dropdown text-center">
-      <div class="dropdown btn-group">
-
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a dataset
-          <span class="caret"></span>
-        </button>
-
-        <ul class="dropdown-menu">
-          <li><a href="/">Covid</a></li>
-          <li><a href="#">Currency</a></li>
-        </ul>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9">
+        <!-- graph div -->
+        <div id="my_dataviz" class="container-fluid"></div>
       </div>
+      <!-- sidebar for buttons and legend -->
+      <div class="col-sm-auto">
+        <div class="row">
+          <!-- button group -->
+          <div class="col">
+            <div class="school-options-dropdown text-center">
+              <div class="dropdown btn-group">
 
-      <!-- graph div -->
-      <div id="my_dataviz" class="container-fluid"></div>
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a dataset
+                  <span class="caret"></span>
+                </button>
 
-    </div>
+                <ul class="dropdown-menu">
+                  <li><a href="/">Covid</a></li>
+                  <li><a href="#">Currency</a></li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            Testing
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+    <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      Testing
+    </button> -->
   </div>
 
 </body>
@@ -43,7 +64,7 @@ var chart = document.getElementById("my_dataviz")
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = chart.offsetWidth - margin.left - margin.right,
+    width = chart.offsetWidth - margin.left - margin.right - 15,
     height = 800 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -97,6 +118,5 @@ d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/stat
 })
 
 </script>
-<br></br>
 
 </html>
