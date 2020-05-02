@@ -43,3 +43,7 @@ chanC -- 2020-04-30 21:00
 liuH -- 2020-04-30 21:20
     - Made a flag
     - Worked on processing data
+    
+chanC -- 2020-05-02 14:00
+    - Made db
+    - Added covid data to db
