@@ -43,7 +43,17 @@ chanC -- 2020-04-30 21:00
 liuH -- 2020-04-30 21:20
     - Made a flag
     - Worked on processing data
-    
+    - We decided to use Databases since "first of all, it's easy to filter results in SQL
+    - by date, mostly, which is what we need, second, it's more efficient third, this is supposed
+    - to show that we know how to develop, also, a database allows for more flexibility future project usage, etc."
+
 chanC -- 2020-05-02 14:00
     - Made db
     - Added covid data to db
+
+liuH -- 2020-04-30 21:20
+    - Delegate Tasks
+    - Current State of Project:
+    - Clement is working on Route and currency Database
+    - Yevgeniy is working on graphing and bar graph animation
+    - David is working on buttons
