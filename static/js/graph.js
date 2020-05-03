@@ -80,8 +80,8 @@ class LineGraph extends Graph {
 	};
 
 	/** Animates drawing of line graph
-	 * @param {string} name - Name of line group (set by `generate_points`) to animate
-	 * @param {Number} duration - Total duration of graphing animation in miliseconds
+	 * @param {string} name - name of line group (set by `generate_points`) to animate
+	 * @param {Number} duration - total duration of graphing animation in miliseconds
 	 */
 	animate_lines(name, duration) {
 		let lines = this.display.node()
@@ -103,7 +103,7 @@ class LineGraph extends Graph {
 	 * @param {Object} params - prototype describing the variables to graph
 	 * @param {string} params.x
 	 * @param {string} params.y
-	 * @param {Number} duration - Total duration of graphing animation in miliseconds
+	 * @param {Number} duration - total duration of graphing animation in miliseconds
 	 */
 	graph(data, name, params, duration) {
 		this.generate_points(data, name, params);
