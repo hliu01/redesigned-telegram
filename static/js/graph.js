@@ -1,4 +1,14 @@
 class Graph {
+
+	/**
+	 *
+	 * @param {Selection} svg_object - d3 selection
+	 * @param {Object} margins - margians prototype
+	 * @param {Number} margins.top
+	 * @param {Number} margins.bottom
+	 * @param {Number} margins.right
+	 * @param {Number} margins.left
+	 */
 	constructor(svg_object, margins) {
 		this.display = svg_object;
 		this.width = svg_object.attr("width");
@@ -20,9 +30,8 @@ class Graph {
 		};
 	};
 
-	/**
-	 * @param {Number[]} domain - array of the form `[min, max]`, which does not neccessarily need to be a `Number[]`, can be a `Date`.\
-	 * Accepts `[min, max]` to return a function which scales an input to fit within `[min, max]`.
+	/** Accepts `[min, max]` to return a function which scales an input to fit within `[min, max]`.
+	 * @param {Number[]} domain - array of the form `[min, max]`, which does not neccessarily need to be a `Number[]`, can be a `Date`.
 	 */
 	scale_horizontal(domain) {
 		let span = this.width - (this.margins.left + this.margins.right);
