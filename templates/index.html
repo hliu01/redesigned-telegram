@@ -1,96 +1,54 @@
-<!-- Graph from https://www.d3-graph-gallery.com/graph/line_basic.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Stonks</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+{% extends "_base.html" %}
 
-  <div class="row">
-    <div class="col-md-12 school-options-dropdown text-center">
-      <div class="dropdown btn-group">
+{% block title %}Worldwide deaths{% endblock %}
 
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a dataset
-          <span class="caret"></span>
-        </button>
+{% block body %}
+<h1>Deaths, Worldwide</h1>
+<div class="graph-container" id="graph1-container">
+	<svg class="graph" id="graph1" width="1000" height="600">
+	</svg>
+</div>
+{% endblock %}
 
-        <ul class="dropdown-menu">
-          <li><a href="/">Covid</a></li>
-          <li><a href="#">Currency</a></li>
-        </ul>
-
-      </div>
-    </div>
-  </div>
-
-</body>
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
-
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
-
+{% block scripts %}
+<script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+<script src="/static/js/graph.js" charset="utf-8"></script>
 <script>
+	const graph = new LineGraph(d3.select("#graph1"), {top: 0, bottom: 20, left: 60, right: 0});
+	const params_death = {x: 'date', y: 'deaths'};
+	const date_parse = d3.timeParse("%Y-%m-%d");
 
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 860 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom;
+	d3.csv(
+		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/migration-graphing/data/covidData/worldwide-aggregated.csv",
+		(datum) => {
+			return {
+				date: date_parse(datum.date),
+				confirmed: parseInt(datum.confirmed),
+				recovered: parseInt(datum.recovered),
+				deaths: parseInt(datum.deaths)
+			};
+		}
+	).then(
+		(data) => {
+			let domain = Graph.domain(data, params_death);
+			console.log(data);
+			console.log(`Dataset domain: ${domain.x}`);
+			console.log(`Dataset range: ${domain.y}`);
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
-//Graph from https://www.d3-graph-gallery.com/graph/line_basic.html
-//Read the data
-d3.csv("https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/static/covidData/worldwide-aggregated.csv",
+			let x_scale = d3.scaleTime().domain(domain.x)
+				.range([0, graph.width - (graph.margins.right + graph.margins.left)]);
+			let y_scale = d3.scaleLinear().domain(domain.y)
+				.range([graph.height - (graph.margins.bottom + graph.margins.top), 0]);
 
-  // When reading the csv, I must format variables:
-  function(d){
-    return { date : d3.timeParse("%Y-%m-%d")(d.date), confirmed : d.confirmed }
-  },
+			graph.display.append("g").attr("class", "x-axis")
+				.attr("transform",`translate(${graph.margins.left},${graph.height - graph.margins.bottom})`)
+				.call(d3.axisBottom().scale(x_scale));
+			graph.display.append("g").attr("class", "y-axis-left")
+				.attr("transform",`translate(${graph.margins.left},${graph.margins.top})`)
+				.call(d3.axisLeft().scale(y_scale));
 
-  // Now I can use this dataset:
-  function(data) {
-
-    // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
-      .range([ 0, width ]);
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.confirmed; })])
-      .range([ height, 0 ]);
-    svg.append("g")
-      .call(d3.axisLeft(y));
-
-    // Add the line
-    svg.append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.date) })
-        .y(function(d) { return y(d.confirmed) })
-        )
-
-})
-
+			graph.graph(data, "deaths", params_death, 10000);
+		}
+	);
 </script>
-<br></br>
-
-</html>
+{% endblock %}

@@ -1,7 +1,6 @@
 class Graph {
 
 	/**
-	 *
 	 * @param {Selection} svg_object - d3 selection
 	 * @param {Object} margins - margians prototype
 	 * @param {Number} margins.top
@@ -72,7 +71,7 @@ class LineGraph extends Graph {
 		let scale_y = (datum) => {return this.scale_vertical(domain.y)(datum[params.y]);};
 
 		this.display.append("g").attr("class", `lines ${name}`)
-			.attr("transform", `translate(${GRAPH.margins.left},${GRAPH.margins.bottom})`)
+			.attr("transform", `translate(${this.margins.left},${this.margins.top})`)
 			.selectAll("dot").data(data).enter().append("line")
 			.attr("x1", scale_x).attr("x2", scale_x)
 			.attr("y1", scale_y).attr("y2", scale_y)
@@ -94,7 +93,7 @@ class LineGraph extends Graph {
 			line.transition().duration(single_step).delay(i * single_step)
 				.attr("x2", lines[i + 1].getAttribute("x1"))
 				.attr("y2", lines[i + 1].getAttribute("y1"));
-		}
+		};
 	};
 
 	/** Graphs a dataset. Wrapper for `generate_points` and `animate_lines`.
