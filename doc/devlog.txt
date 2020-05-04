@@ -68,14 +68,18 @@ liuH -- 2020-04-30 21:20
     - David is working on buttons
 
 gorbachevY -- 2020-05-02 23:30
-	- Added own graphing library (from K18)
+    - Added own graphing library (from K18)
 
 gorbachevY -- 2020-05-03 20:30
-	- Added docstrings to graphing library
-	- (branch migration-graphing) changed default graph to use graphing library
+    - Added docstrings to graphing library
+    - (branch migration-graphing) changed default graph to use graphing library
 
 xiedengD - 2020-05-03 21:32
     - initial merge for master with branch UI
+
+chanC - 2020-05-03 21:45
+    - Wrote code to generate temporary csv's for d3 graphing
+    - Created getData route
 
 xiedengD - 2020-05-03 21:46
     - reestablished flexible chart
