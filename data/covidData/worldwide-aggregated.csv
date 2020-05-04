@@ -1,4 +1,4 @@
-date,confirmed,Recovered,Deaths,Increase
+date,confirmed,recovered,deaths,increase
 2020-01-22,555,28,17,222
 2020-01-23,654,30,18,17.83783783783784
 2020-01-24,941,36,26,43.883792048929664
