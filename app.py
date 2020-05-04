@@ -3,7 +3,7 @@ from data.dataset import *
 
 app = Flask(__name__)
 
-makeData("China", "2020-03-01", "2020-04-01", 0)
+makeData(0, "China", "2020-03-01", "2020-04-01", 0)
 
 
 @app.route("/")
@@ -11,13 +11,13 @@ def root():
     return render_template("index.html")
 
 
-@app.route("/a")
-def oneChart():
-    #makeData("China", "2020-03-01", "2020-04-01", 0)
-    return render_template("index.html")
-
-@app.route("/b")
-def twocharts():
+@app.route("/data")
+def getData():
+    print(request.args)
+    dataType = request.args['dataset']
+    country = request.args['country']
+    startDate = request.args['beginDate']
+    endDate = request.args['endDate']
     #makeData("China", "2020-03-01", "2020-04-01", 0)
     #makeData("US", "2020-03-01", "2020-04-01", 1)
     return render_template("index.html")

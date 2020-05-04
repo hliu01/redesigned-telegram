@@ -9,7 +9,7 @@ c = db.cursor()
 
 
 
-def makeData(country, startDate, endDate, cell):
+def makeData(dataTyoe, country, startDate, endDate, cell):
     print(startDate + ":" + endDate)
     if startDate < "2020-01-22" and endDate > "2020-04-25":
         makeData(country ,"2020-01-22" ,"2020-04-25" ,cell)
@@ -21,8 +21,7 @@ def makeData(country, startDate, endDate, cell):
         dataset = open('data/dataset{}.csv'.format(cell) ,'w')
         dataset.write('country,date,confirmed,deaths,recovered\n')
         idx = c.execute('SELECT id FROM countries WHERE name="{}";'.format(country)).fetchall()[0][0]
-        arr = c.execute \
-            ('SELECT date, confirmed, deaths, recovered FROM data WHERE countryId="{}";'.format(idx)).fetchall()
+        arr = c.execute('SELECT date, confirmed, deaths, recovered FROM data WHERE countryId="{}";'.format(idx)).fetchall()
         for entry in arr:
             if entry[0] >= startDate and entry[0] <= endDate:
                 line = country
