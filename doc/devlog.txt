@@ -83,3 +83,7 @@ xiedengD - 2020-05-03 21:46
 xiedengD - 2020-05-03 22:06
     - hotfix page formation issue:
         compatibility needed for chrome and safari
+
+xiedengD - 2020-05-03 22:20
+    - missing functionality of choose dataset restored
+        ~ cause: script cdn linked deleted by mistake 
