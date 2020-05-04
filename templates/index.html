@@ -7,10 +7,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="./static/index.css"
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 	.graph-container {
 		border-style: solid;
@@ -22,23 +18,28 @@
 {% endblock head %}
 
 {% block body %}
-<h1>Deaths, Worldwide</h1>
-<div class="graph-container" id="graph1-container" p.solid {border-style: solid;}>
-	<svg class="graph" id="graph1" width="1000" height="600">
-	</svg>
-</div>
-
 <div class="container">
+	<h1>Deaths, Worldwide</h1>
 	<div class="row">
-		<div class="col-xl-9">
+		<div class="col-xl-8">
 			<!-- graph div -->
-			<div id="my_dataviz" class="container-fluid"></div>
+			<div class="graph-container" id="graph1-container" p.solid {border-style: solid;}>
+				<svg class="graph" id="graph1" height="600">
+					<!-- width="1000"  -->
+				</svg>
+			</div>
 		</div>
 		<!-- sidebar for buttons and legend -->
 		<div class="col-sm-auto">
 			<div class="row">
 				<!-- button group -->
 				<div class="col">
+					<button id="add-graph" class="btn btn-primary btn-block">
+						Add graph button
+					</button>
+					<button class="btn btn-primary btn-block">
+						Smooth transition
+					</button>
 					<div class="dropdown">
 						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a dataset
 							<span class="caret"></span>
@@ -48,15 +49,9 @@
 							<li><a href="#">Currency</a></li>
 						</ul>
 					</div>
-					<button id="add-graph" class="btn btn-primary btn-block">
-						Add graph button
-					</button>
-					<button class="btn btn-primary btn-block">
-						Smooth transition
-					</button>
 				</div>
 				<div class="col">
-					Testing
+					Use for Legend later
 				</div>
 			</div>
 		</div>
@@ -69,6 +64,11 @@
 <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
 <script src="/static/js/graph.js" charset="utf-8"></script>
 <script>
+	let graph1Container = document.getElementById("graph1-container");
+	let graph1 = document.getElementById("graph1");
+	graph1.setAttribute("width", graph1Container.offsetWidth);
+
+
 	const graph = new LineGraph(d3.select("#graph1"), {top: 0, bottom: 20, left: 60, right: 0});
 	const params_death = {x: 'date', y: 'deaths'};
 	const date_parse = d3.timeParse("%Y-%m-%d");

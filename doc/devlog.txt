@@ -74,5 +74,8 @@ gorbachevY -- 2020-05-03 20:30
 	- Added docstrings to graphing library
 	- (branch migration-graphing) changed default graph to use graphing library
 
-xiedengD - 2020-04-03 21:32
+xiedengD - 2020-05-03 21:32
     - initial merge for master with branch UI
+
+xiedengD - 2020-04-03 21:46
+    - reestablished flexible chart 
