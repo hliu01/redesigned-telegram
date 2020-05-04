@@ -47,9 +47,18 @@ liuH -- 2020-04-30 21:20
     - by date, mostly, which is what we need, second, it's more efficient third, this is supposed
     - to show that we know how to develop, also, a database allows for more flexibility future project usage, etc."
 
+xiedengD -- 2020-05-02 13:03
+    - Made chart generate into dimension of window
+
+xiedengD -- 2020-05-02 13:57
+    - rearranged elements in bootstrap containers
+
 chanC -- 2020-05-02 14:00
     - Made db
     - Added covid data to db
+
+xiedengD -- 2020-05-02 14:26
+    - added button elements but they don't do anything yet
 
 liuH -- 2020-04-30 21:20
     - Delegate Tasks
@@ -65,3 +74,5 @@ gorbachevY -- 2020-05-03 20:30
 	- Added docstrings to graphing library
 	- (branch migration-graphing) changed default graph to use graphing library
 
+xiedengD - 2020-04-03 21:32
+    - initial merge for master with branch UI
