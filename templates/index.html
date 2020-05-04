@@ -2,9 +2,20 @@
 
 {% block title %}Worldwide deaths{% endblock %}
 
+{% block head %}
+<style>
+	.graph-container {
+		border-style: solid;
+		border-width: 1px;
+		border-color: #000000;
+		display: inline-block;
+	}
+</style>
+{% endblock head %}
+
 {% block body %}
 <h1>Deaths, Worldwide</h1>
-<div class="graph-container" id="graph1-container">
+<div class="graph-container" id="graph1-container" p.solid {border-style: solid;}>
 	<svg class="graph" id="graph1" width="1000" height="600">
 	</svg>
 </div>
