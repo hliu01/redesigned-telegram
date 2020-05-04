@@ -57,3 +57,11 @@ liuH -- 2020-04-30 21:20
     - Clement is working on Route and currency Database
     - Yevgeniy is working on graphing and bar graph animation
     - David is working on buttons
+
+gorbachevY -- 2020-05-02 23:30
+	- Added own graphing library (from K18)
+
+gorbachevY -- 2020-05-03 20:30
+	- Added docstrings to graphing library
+	- (branch migration-graphing) changed default graph to use graphing library
+
