@@ -87,3 +87,5 @@ xiedengD - 2020-05-03 21:46
 xiedengD - 2020-05-03 22:06
     - hotfix page formation issue:
         compatibility needed for chrome and safari
+chanC - 2020-05-03 22:50
+    - Fixed SQLite object thread error
