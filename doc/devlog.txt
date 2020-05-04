@@ -90,4 +90,7 @@ xiedengD - 2020-05-03 22:06
 
 xiedengD - 2020-05-03 22:20
     - missing functionality of choose dataset restored
-        ~ cause: script cdn linked deleted by mistake 
+        ~ cause: script cdn linked deleted by mistake
+
+xiedengD - 2020-05-03 22:53
+    - added styling and theme to index page.
