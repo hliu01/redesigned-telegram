@@ -11,6 +11,19 @@ def root():
     return render_template("index.html")
 
 
+@app.route("/a")
+def oneChart():
+    #makeData("China", "2020-03-01", "2020-04-01", 0)
+    return render_template("index.html")
+
+@app.route("/b")
+def twocharts():
+    #makeData("China", "2020-03-01", "2020-04-01", 0)
+    #makeData("US", "2020-03-01", "2020-04-01", 1)
+    return render_template("index.html")
+
+
+
 # @app.route("/changedofnow")
 # def chanedfornow():
 #     return render_template("index.html")
