@@ -1,24 +1,23 @@
 from flask import *
-# from static.covidData.process import *
-import os
-import csv
+from data.dataset import *
 
 app = Flask(__name__)
 
-# arrA = arrTypeA()
-# arrB = arrTypeB()
+makeData("China", "2020-03-01", "2020-04-01", 0)
+
 
 @app.route("/")
 def root():
     return render_template("index.html")
 
+
 # @app.route("/changedofnow")
 # def chanedfornow():
-#     return render_template("index.html", arrA = arrA, arrB = arrB, countryDict = countryIdx, dateDict = dateIdx)
+#     return render_template("index.html")
 
 # @app.route("/ok")
 # def cool():
-#     return render_template("ok.html", arrA = arrA, arrB = arrB)
+#     return render_template("ok.html")
 
 if __name__ == "__main__":
     app.debug = True
