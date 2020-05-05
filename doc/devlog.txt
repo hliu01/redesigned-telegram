@@ -100,3 +100,4 @@ xiedengD - 2020-05-03 22:53
 
 chanC - 2020-05-04 21:58
     - Add exchange rate data for USD,EUR,GBP,JPY,CNY from 01-22 to 04-25
+    - Add exchange rate data to temp dataset builder
