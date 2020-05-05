@@ -27,4 +27,4 @@ def makeData(dataType, country, startDate, endDate, cell):
                 dataset.write(line + "\n")
         dataset.close()
 
-# makeData("World","2020-01-10","2020-02-04")
+makeData(0,"World","2020-01-10","2020-02-04",1)
