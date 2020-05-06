@@ -70,7 +70,7 @@
 	let graph1 = document.getElementById("graph1");
 	graph1.setAttribute("width", graph1Container.offsetWidth - 15);
 
-	const graph = new LineGraph(d3.select("#graph1"), {top: 0, bottom: 20, left: 60, right: 0});
+	const graph = new LineGraph(d3.select("#graph1"), {top: 10, bottom: 30, left: 70, right: 10});
 	const params_death = {x: 'date', y: 'deaths'};
 	const date_parse = d3.timeParse("%Y-%m-%d");
 
