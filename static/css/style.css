@@ -1,5 +1,5 @@
 .main{
-  background-color: #181616;
+  background-image: linear-gradient(#0B3249, #000000)
 }
 
 .graph-container {
@@ -11,9 +11,19 @@
 }
 
 .graph {
-  background-color: #2DA5D1;
+  background-color: #49A4FF;
 }
 
 .text{
-  color: #0073CB;
+  color: #1085DE;
+}
+
+#stonks{
+  font-family: "Courier New", Courier, monospace;
+  font-size: 48px;
+  padding-bottom: -15px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  background-color: #1853BA;
 }
