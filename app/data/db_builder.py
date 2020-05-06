@@ -6,7 +6,7 @@ import urllib.request
 import json
 
 countryIdx = {'World': 0}
-with open('covidData/countries-aggregated.csv') as f:
+with open('app/covidData/countries-aggregated.csv') as f:
     for line in f.readlines():
         name=line.split(',')[1]
         if name != 'country' and name not in countryIdx.keys():

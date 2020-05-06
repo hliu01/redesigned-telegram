@@ -75,7 +75,7 @@
 	const date_parse = d3.timeParse("%Y-%m-%d");
 
 	d3.csv(
-		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/migration-graphing/data/covidData/worldwide-aggregated.csv",
+		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/migration-graphing/app/data/covidData/worldwide-aggregated.csv",
 		(datum) => {
 			return {
 				date: date_parse(datum.date),
