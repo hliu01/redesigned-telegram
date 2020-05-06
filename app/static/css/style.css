@@ -1,19 +1,27 @@
 .main{
-  background-color: #181616;
+	background-color: #181616;
 }
 
 .graph-container {
-  border-style: solid;
-  border-width: 1px;
-  color: #000000;
-  border-color: #0073CB;
-  display: inline-block;
+	border-style: solid;
+	border-width: 1px;
+	color: #000000;
+	border-color: #ffffff;
+	display: inline-block;
 }
 
 .graph {
-  background-color: #2DA5D1;
+	background-color: #000000;
+}
+
+.white-path line, .whitePath path {
+	stroke: #ffffff;
+}
+
+.white-text text {
+	fill: #ffffff;
 }
 
 .text{
-  color: #0073CB;
+	color: #ffffff;
 }

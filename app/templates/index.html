@@ -74,6 +74,21 @@
 	const params_death = {x: 'date', y: 'deaths'};
 	const date_parse = d3.timeParse("%Y-%m-%d");
 
+	const generate_axes = function(data) {
+		let domain = Graph.domain(data, params_death);
+		let x_scale = d3.scaleTime().domain(domain.x)
+			.range([0, graph.width - (graph.margins.right + graph.margins.left)]);
+		let y_scale = d3.scaleLinear().domain(domain.y)
+			.range([graph.height - (graph.margins.bottom + graph.margins.top), 0]);
+
+		graph.display.append("g").attr("class", "x-axis white-path white-text")
+			.attr("transform",`translate(${graph.margins.left},${graph.height - graph.margins.bottom})`)
+			.call(d3.axisBottom().scale(x_scale));
+		graph.display.append("g").attr("class", "y-axis-left white-path white-text")
+			.attr("transform",`translate(${graph.margins.left},${graph.margins.top})`)
+			.call(d3.axisLeft().scale(y_scale));
+	}
+
 	d3.csv(
 		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/app/data/covidData/worldwide-aggregated.csv",
 		(datum) => {
@@ -87,23 +102,10 @@
 	).then(
 		(data) => {
 			let domain = Graph.domain(data, params_death);
-			console.log(data);
-			console.log(`Dataset domain: ${domain.x}`);
-			console.log(`Dataset range: ${domain.y}`);
 
-			let x_scale = d3.scaleTime().domain(domain.x)
-				.range([0, graph.width - (graph.margins.right + graph.margins.left)]);
-			let y_scale = d3.scaleLinear().domain(domain.y)
-				.range([graph.height - (graph.margins.bottom + graph.margins.top), 0]);
+			generate_axes(data);
 
-			graph.display.append("g").attr("class", "x-axis")
-				.attr("transform",`translate(${graph.margins.left},${graph.height - graph.margins.bottom})`)
-				.call(d3.axisBottom().scale(x_scale));
-			graph.display.append("g").attr("class", "y-axis-left")
-				.attr("transform",`translate(${graph.margins.left},${graph.margins.top})`)
-				.call(d3.axisLeft().scale(y_scale));
-
-			graph.graph(data, "deaths", params_death, 10000);
+			graph.graph(data, "deaths", params_death, 10000, "white");
 		}
 	);
 </script>
