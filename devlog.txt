@@ -87,3 +87,17 @@ xiedengD - 2020-05-03 21:46
 xiedengD - 2020-05-03 22:06
     - hotfix page formation issue:
         compatibility needed for chrome and safari
+
+xiedengD - 2020-05-03 22:20
+    - missing functionality of choose dataset restored
+        ~ cause: script cdn linked deleted by mistake
+
+chanC - 2020-05-03 22:50
+    - Fixed SQLite object thread error
+
+xiedengD - 2020-05-03 22:53
+    - added styling and theme to index page.
+
+chanC - 2020-05-04 21:58
+    - Add exchange rate data for USD,EUR,GBP,JPY,CNY from 01-22 to 04-25 to db
+    - Add exchange rate data to temp dataset builder
