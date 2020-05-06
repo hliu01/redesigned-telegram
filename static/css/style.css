@@ -18,6 +18,15 @@
   color: #1085DE;
 }
 
+.button-holder{
+  padding: 5px;
+  width: 180px;
+}
+
+#button-group{
+  padding: 15px;
+}
+
 #stonks{
   font-family: "Courier New", Courier, monospace;
   font-size: 48px;
