@@ -113,3 +113,9 @@ xiedengD - 2020-05-06 09:07
 xiedengD - 2020-05-06 09:31
     - moved button group to the right
     - fixed flexbox element of the chart
+
+xiedengD - 2020-05-07 01:55
+    - merged with Yevgeniy's changes
+    - readded CSS changes
+    - changed color of top bar
+    - added bottom bar
