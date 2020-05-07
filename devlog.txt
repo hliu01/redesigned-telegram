@@ -92,8 +92,19 @@ xiedengD - 2020-05-03 22:20
     - missing functionality of choose dataset restored
         ~ cause: script cdn linked deleted by mistake
 
+chanC - 2020-05-03 22:50
+    - Fixed SQLite object thread error
+
 xiedengD - 2020-05-03 22:53
     - added styling and theme to index page.
+
+gorbachevY -- 2020-05-04 09:38
+	- changed colors to black and white
+	- added color argument to graphing function
+
+chanC - 2020-05-04 21:58
+    - Add exchange rate data for USD,EUR,GBP,JPY,CNY from 01-22 to 04-25 to db
+    - Add exchange rate data to temp dataset builder
 
 xiedengD - 2020-05-06 09:07
     - added gradient to background

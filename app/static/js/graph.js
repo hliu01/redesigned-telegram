@@ -64,8 +64,9 @@ class LineGraph extends Graph {
 	 * @param {Object} params - prototype describing the variables to graph
 	 * @param {string} params.x
 	 * @param {string} params.y
+	 * @param {string} color - color of line
 	 */
-	generate_points(data, name, params) {
+	generate_points(data, name, params, color) {
 		let domain = Graph.domain(data, params);
 		let scale_x = (datum) => {return this.scale_horizontal(domain.x)(datum[params.x]);};
 		let scale_y = (datum) => {return this.scale_vertical(domain.y)(datum[params.y]);};
@@ -75,7 +76,7 @@ class LineGraph extends Graph {
 			.selectAll("dot").data(data).enter().append("line")
 			.attr("x1", scale_x).attr("x2", scale_x)
 			.attr("y1", scale_y).attr("y2", scale_y)
-			.style("stroke", "black").style("opacity", 1);
+			.style("stroke", color).style("opacity", 1);
 	};
 
 	/** Animates drawing of line graph
@@ -104,8 +105,8 @@ class LineGraph extends Graph {
 	 * @param {string} params.y
 	 * @param {Number} duration - total duration of graphing animation in miliseconds
 	 */
-	graph(data, name, params, duration) {
-		this.generate_points(data, name, params);
+	graph(data, name, params, duration, color) {
+		this.generate_points(data, name, params, color);
 		this.animate_lines(name, duration);
 	};
 };
