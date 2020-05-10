@@ -82,9 +82,8 @@
 	let graph1 = document.getElementById("graph1");
 	graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 
-
 	const date_parse = d3.timeParse("%Y-%m-%d");
-	const duration = 10000
+	const duration = 10000;
 
 	d3.csv(
 		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/app/data/covidData/worldwide-aggregated.csv",
@@ -102,14 +101,10 @@
 			let params = {x: 'date', y: 'deaths'};
 			let domain = Graph.domain(data, params);
 
-			let scale_bottom = graph.generate_axis("bottom", domain.x);
-			let scale_right = graph.generate_axis("right", domain.y);
-			let scale_left = graph.generate_axis("left", [0, 1000]);
-
-			graph.adjust_axis("left", scale_left, [0, 500], duration);
+			graph.generate_axis("bottom", domain.x);
+			graph.generate_axis("right", domain.y);
 
 			graph.graph(data, "deaths", params, duration, "white");
-
 		}
 	);
 </script>

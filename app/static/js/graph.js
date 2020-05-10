@@ -13,6 +13,8 @@ class Graph {
 		this.width = svg_object.attr("width");
 		this.height = svg_object.attr("height");
 		this.margins = margins;
+		this.data = [];
+		this.data_names = []
 	};
 
 	/**
@@ -42,7 +44,6 @@ class Graph {
 		return scaler;
 	};
 	/** Accepts `[min, max]` to return a function which scales an input to fit within `[max, min]`.\
-	 * Flipped to fit the inversion of vertical coordiantes in HTML.
 	 * @param {Number[]} domain - array of the form `[min, max]`, which does not neccessarily need to be a `Number[]`, can be a `Date`.\
 	 */
 	scale_vertical(domain) {
@@ -50,9 +51,13 @@ class Graph {
 		/** @param {Number} value */
 		let scaler = function(value) {
 			let ratio = (value - domain[0]) / (domain[1] - domain[0]);
-			return span * (1 - ratio);
+			return span * (1 - ratio); // ratio flipped to fit inversion of vertical coordinates in HTML
 		};
 		return scaler;
+	};
+
+	add_data(data, name) {
+
 	};
 
 	/** Generates axis
@@ -68,7 +73,7 @@ class Graph {
 			scale = d3.scaleTime().domain(domain).range(range); // axis scale
 
 			this.display.append("g")
-				.attr("class", "x-axis white-path white-text")
+				.attr("class", "bottom-axis white-path white-text")
 				.attr("transform",`translate(${this.margins.left},${this.height - this.margins.bottom})`)
 				.call(d3.axisBottom().scale(scale)); // add axis object
 		}
@@ -80,7 +85,7 @@ class Graph {
 			let axis = (type == "left" ? d3.axisLeft : d3.axisRight) // set appropriate d3 axis call (left/right)
 
 			this.display.append("g")
-				.attr("class", `y-axis-${type} white-path white-text`)
+				.attr("class", `${type}-axis white-path white-text`)
 				.attr("transform",`translate(${translation},${this.margins.top})`)
 				.call(axis().scale(scale)); // add axis object
 		}
@@ -98,19 +103,16 @@ class Graph {
 	 * @param {Number} duration - transition duration in miliseconds
 	 */
 	adjust_axis(type, scale, domain, duration) {
-		scale.domain(domain); // new axis scale
-		if (type == "bottom") {
-			console.log(this.display.select(".x-axis"));
-			this.display.select(".x-axis")
+		scale.domain(domain); // new scale domain
+		if (type == "bottom" || type == "left" || type == "right") {
+			let calls = {
+				bottom: d3.axisBottom,
+				right: d3.axisRight,
+				left: d3.axisLeft
+			};
+			this.display.select(`.${type}-axis`)
 				.transition().duration(duration)
-				.call(d3.axisBottom().scale(scale));
-		}
-		else if (type == "left" || type == "right") {
-			let axis = (type == "left" ? d3.axisLeft : d3.axisRight);
-
-			this.display.select(`.y-axis-${type}`)
-				.transition().duration(duration)
-				.call(axis().scale(scale));
+				.call(calls[type]().scale(scale)); // gives axis new scale
 		}
 		else {
 			throw "Invalid axis type";
@@ -150,13 +152,14 @@ class LineGraph extends Graph {
 	animate_lines(name, duration) {
 		let lines = this.display.node()
 			.querySelectorAll(`.${name}`)[0]
-			.querySelectorAll("line");
+			.querySelectorAll("line"); // gets lines as normal DOM objects
 		let single_step = duration / lines.length
 		let line;
+
 		for(let i = 0; i < lines.length - 1; i++) {
 			line = d3.select(lines[i]);
 			line.transition().duration(single_step).delay(i * single_step)
-				.attr("x2", lines[i + 1].getAttribute("x1"))
+				.attr("x2", lines[i + 1].getAttribute("x1")) // moves line endpoint to next line
 				.attr("y2", lines[i + 1].getAttribute("y1"));
 		};
 	};
