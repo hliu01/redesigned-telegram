@@ -13,8 +13,7 @@ class Graph {
 		this.width = svg_object.attr("width");
 		this.height = svg_object.attr("height");
 		this.margins = margins;
-		this.data = [];
-		this.data_names = []
+		// this.data = [];
 	};
 
 	/**
@@ -30,6 +29,8 @@ class Graph {
 			y: d3.extent(data, (datum) => {return datum[params.y]}),
 		};
 	};
+
+	// domains(named_params)
 
 	/** Accepts `[min, max]` to return a function which scales an input to fit within `[min, max]`.
 	 * @param {Number[]} domain - array of the form `[min, max]`, which does not neccessarily need to be a `Number[]`, can be a `Date`.
@@ -56,9 +57,14 @@ class Graph {
 		return scaler;
 	};
 
-	add_data(data, name) {
-
-	};
+	// add_data(data, name) {
+	// 	for(let i = 0; i < data.length; i++) {
+	// 		if (!this.data[i]) {
+	// 			this.data[i] = {};
+	// 		}
+	// 		this.data[i][name] = data[i];
+	// 	}
+	// };
 
 	/** Generates axis
 	 * @param {string} type -  Takes the values "left", "right", "bottom"
