@@ -5,9 +5,6 @@ import sqlite3
 app = Flask(__name__)
 
 
-# makeData(0, "China", "2020-03-01", "2020-04-01", 0)
-
-
 @app.route("/")
 def root():
     return render_template("index.html")
@@ -26,7 +23,8 @@ def getData():
     # makeData("China", "2020-03-01", "2020-04-01", 0)
     # makeData("US", "2020-03-01", "2020-04-01", 1)
     makeData(dataType, country, startDate, endDate, cell)
-    return render_template("index.html")
+    return send_from_directory('./data','dataset{}.csv'.format(cell))
+    #return render_template("index.html")
 
 #Covid data from 2/20 to 2/05 for the US
 #/data?dataset=0&country=US&beginDate=2020-01-20&endDate=2020-02-05
@@ -48,7 +46,7 @@ def makeData(dataType, country, startDate, endDate, cell):
     elif endDate > "2020-04-25":
         makeData(dataType, country, startDate, "2020-04-25", cell)
     else:
-        if dataType:
+        if dataType == '1':
             currency(country, startDate, endDate, cell)
         else:
             covid(country, startDate, endDate, cell)
@@ -57,10 +55,10 @@ def makeData(dataType, country, startDate, endDate, cell):
 def covid(country, startDate, endDate, cell):
     db = sqlite3.connect("data/boop.db")
     c = db.cursor()
-    print(startDate + ":" + endDate)
+    print('covid ' + startDate + ":" + endDate)
+    idx = c.execute('SELECT id FROM countries WHERE name="{}";'.format(country)).fetchall()[0][0]
     dataset = open('data/dataset{}.csv'.format(cell), 'w')
     dataset.write('country,date,confirmed,deaths,recovered\n')
-    idx = c.execute('SELECT id FROM countries WHERE name="{}";'.format(country)).fetchall()[0][0]
     arr = c.execute('SELECT date, confirmed, deaths, recovered FROM data WHERE countryId="{}";'.format(idx)).fetchall()
     for entry in arr:
         if startDate <= entry[0] <= endDate:
@@ -74,7 +72,7 @@ def covid(country, startDate, endDate, cell):
 def currency(country, startDate, endDate, cell):
     db = sqlite3.connect("data/boop.db")
     c = db.cursor()
-    print(startDate + ":" + endDate)
+    print('currency ' + startDate + ":" + endDate)
     dataset = open('data/dataset{}.csv'.format(cell), 'w')
     dataset.write('base,date,USD,EUR,GBP,JPY,CNY\n')
     arr = c.execute("SELECT * FROM currency WHERE base='{}';".format(country)).fetchall()
