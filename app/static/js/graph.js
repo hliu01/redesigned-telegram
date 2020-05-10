@@ -54,6 +54,69 @@ class Graph {
 		};
 		return scaler;
 	};
+
+	/** Generates axis
+	 * @param {string} type -  Takes the values "left", "right", "bottom"
+	 * @param {Number[]} domain - Array of the form [min, max] (a return value from `Graph.domain()`)
+	 */
+	generate_axis(type, domain) {
+		let range = [0, 0];
+		let scale;
+		if (type == "bottom") {
+			range[1] = this.width - (this.margins.right + this.margins.left); // sets range on graph
+
+			scale = d3.scaleTime().domain(domain).range(range); // axis scale
+
+			this.display.append("g")
+				.attr("class", "x-axis white-path white-text")
+				.attr("transform",`translate(${this.margins.left},${this.height - this.margins.bottom})`)
+				.call(d3.axisBottom().scale(scale)); // add axis object
+		}
+		else if (type == "left" || type == "right") {
+			range[0] = this.height - (this.margins.bottom + this.margins.top); // sets range on graph
+
+			scale = d3.scaleLinear().domain(domain).range(range); // axis scale
+			let translation = (type == "left" ? this.margins.left : this.width - this.margins.right); // set translation amount (to left/right margin)
+			let axis = (type == "left" ? d3.axisLeft : d3.axisRight) // set appropriate d3 axis call (left/right)
+
+			this.display.append("g")
+				.attr("class", `y-axis-${type} white-path white-text`)
+				.attr("transform",`translate(${translation},${this.margins.top})`)
+				.call(axis().scale(scale)); // add axis object
+		}
+		else {
+			throw "Invalid axis type";
+		};
+
+		return scale;
+	};
+
+	/** Mutates axis
+	 * @param {string} type - takes the values "left", "right", "bottom"
+	 * @param {Scale} scale - axis's scale, as returned from generate_axis
+	 * @param {Number[]} domain - array of the form [min, max] (a return value from `Graph.domain()`)
+	 * @param {Number} duration - transition duration in miliseconds
+	 */
+	adjust_axis(type, scale, domain, duration) {
+		scale.domain(domain); // new axis scale
+		if (type == "bottom") {
+			console.log(this.display.select(".x-axis"));
+			this.display.select(".x-axis")
+				.transition().duration(duration)
+				.call(d3.axisBottom().scale(scale));
+		}
+		else if (type == "left" || type == "right") {
+			let axis = (type == "left" ? d3.axisLeft : d3.axisRight);
+
+			this.display.select(`.y-axis-${type}`)
+				.transition().duration(duration)
+				.call(axis().scale(scale));
+		}
+		else {
+			throw "Invalid axis type";
+		};
+	};
+
 };
 
 class LineGraph extends Graph {
@@ -70,8 +133,9 @@ class LineGraph extends Graph {
 		let domain = Graph.domain(data, params);
 		let scale_x = (datum) => {return this.scale_horizontal(domain.x)(datum[params.x]);};
 		let scale_y = (datum) => {return this.scale_vertical(domain.y)(datum[params.y]);};
+		// ^ functions which scale an input to pixel size within the SVG
 
-		this.display.append("g").attr("class", `lines ${name}`)
+		this.display.append("g").attr("class", `lines ${name}`) // generate zero-length lines
 			.attr("transform", `translate(${this.margins.left},${this.margins.top})`)
 			.selectAll("dot").data(data).enter().append("line")
 			.attr("x1", scale_x).attr("x2", scale_x)
