@@ -98,13 +98,26 @@ chanC - 2020-05-03 22:50
 xiedengD - 2020-05-03 22:53
     - added styling and theme to index page.
 
-chanC - 2020-05-04 21:58
-    - Add exchange rate data for USD,EUR,GBP,JPY,CNY from 01-22 to 04-25 to db
-    - Add exchange rate data to temp dataset builder
-
 gorbachevY -- 2020-05-04 09:38
 	- changed colors to black and white
 	- added color argument to graphing function
 
+chanC - 2020-05-04 21:58
+    - Add exchange rate data for USD,EUR,GBP,JPY,CNY from 01-22 to 04-25 to db
+    - Add exchange rate data to temp dataset builder
+
+xiedengD - 2020-05-06 09:07
+    - added gradient to background
+    - change colors of existing elements
+
+xiedengD - 2020-05-06 09:31
+    - moved button group to the right
+    - fixed flexbox element of the chart
+
+xiedengD - 2020-05-07 01:55
+    - merged with Yevgeniy's changes
+    - readded CSS changes
+    - changed color of top bar
+    - added bottom bar
 chanC - 2020-05-10 16:04
     - Added instructions for /data route
