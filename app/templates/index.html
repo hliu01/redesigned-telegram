@@ -84,9 +84,9 @@
 
 	const date_parse = d3.timeParse("%Y-%m-%d");
 	const duration = 10000;
-
 	d3.csv(
 		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/app/data/covidData/worldwide-aggregated.csv",
+
 		(datum) => {
 			return {
 				date: date_parse(datum.date),
