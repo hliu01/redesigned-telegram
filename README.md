@@ -31,15 +31,15 @@ The purpose of this site is to understand the effect of COVID-19 on other aspect
 
 
 
-## Clone instructions:
-`$ git clone git@github.com:hliu01/redesigned-telegram.git`
-`$ cd redesigned-telegram`
-`$ python3 -m venv packages`
-`$ . packages/bin/activate`
-`$ pip3 install -r requirements.txt`
-`$ cd app/`
-`$ python3 __init__.py`
+## Run instructions:
 
-Commands 0, 1 clone and move to the project; commands 2, 3, 4 set up a virtual environment with the required packages, and commands 5, 6 execute the program.
+ - `$ git clone git@github.com:hliu01/redesigned-telegram.git`
+ - `$ cd redesigned-telegram`
+ - `$ python3 -m venv packages`
+ - `$ . packages/bin/activate`
+ - `$ pip3 install -r requirements.txt`
+ - `$ cd app/`
+ - `$ python3 __init__.py`
 
-View the webpage by opening a web browser and visiting: http://127.0.0.1:5000/
+
+View the webpage by opening a web browser and visiting `http://127.0.0.1:5000/` or `localhost:5000/`
