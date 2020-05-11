@@ -6,10 +6,10 @@ graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 // EXAMPLES AS DEFAULT
 // SET BY USER IN PRODUCTION
 const currency_base = "USD";
-const currencies = ["CNY", "EUR"];
-const covid_param = "deaths";
-const countries = ["United Kingdom", "China"];
-const start = "2020-02-20";
+const currencies = ["EUR","GBP","JPY","CNY"];
+const covid_param = "confirmed";
+const countries = ["United Kingdom", "China", "Japan", "France", "Italy", "Germany"];
+const start = "2020-01-20";
 const end = "2020-04-20";
 
 const parseDate = d3.timeParse("%Y-%m-%d");
