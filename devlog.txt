@@ -136,6 +136,19 @@ gorbachevY -- 2020-05-11 01:10
 	- finished simultaneous graphing
 	- added js variables for user selection
 	- added wrapper function for execution code
-	
+
 gorbachevY -- 2020-05-11 01:45
 	- expanded placeholders
+
+xiedengD -- 2020-05-11 01:58
+    - listeners added to left-currency
+
+xiedengD -- 2020-05-11 02:11
+    - listeners hide option menu and selects base currency
+
+xiedengD -- 2020-05-11 02:31
+    - right listeners add currency to currencies array for comparison
+
+xiedengD -- 2020-05-11 02:54
+    - added functional inputs for countries;
+        with matching currency
