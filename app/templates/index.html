@@ -75,37 +75,6 @@
 
 {% block scripts %}
 <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-<script src="./static/js/graph.js" charset="utf-8"></script>
-<script>
-	// gets width of container
-	let graph1Container = document.getElementById("col-graph");
-	let graph1 = document.getElementById("graph1");
-	graph1.setAttribute("width", graph1Container.offsetWidth - 40);
-
-	const date_parse = d3.timeParse("%Y-%m-%d");
-	const duration = 10000;
-	d3.csv(
-		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/app/data/covidData/worldwide-aggregated.csv",
-
-		(datum) => {
-			return {
-				date: date_parse(datum.date),
-				confirmed: parseInt(datum.confirmed),
-				recovered: parseInt(datum.recovered),
-				deaths: parseInt(datum.deaths)
-			};
-		}
-	).then(
-		(data) => {
-			let graph = new LineGraph(d3.select("#graph1"), {top: 10, bottom: 30, left: 70, right: 70});
-			let params = {x: 'date', y: 'deaths'};
-			let domain = Graph.domain(data, params);
-
-			graph.generate_axis("bottom", domain.x);
-			graph.generate_axis("right", domain.y);
-
-			graph.graph(data, "deaths", params, duration, "white");
-		}
-	);
-</script>
+<script src="/static/js/graph.js" charset="utf-8"></script>
+<script src="/static/js/index.js" charset="utf-8"></script>
 {% endblock %}

@@ -81,7 +81,7 @@ class Graph {
 			this.display.append("g")
 				.attr("class", "bottom-axis white-path white-text")
 				.attr("transform",`translate(${this.margins.left},${this.height - this.margins.bottom})`)
-				.call(d3.axisBottom().scale(scale)); // add axis object
+				.call(d3.axisBottom(scale)); // add axis object
 		}
 		else if (type == "left" || type == "right") {
 			range[0] = this.height - (this.margins.bottom + this.margins.top); // sets range on graph
@@ -93,7 +93,7 @@ class Graph {
 			this.display.append("g")
 				.attr("class", `${type}-axis white-path white-text`)
 				.attr("transform",`translate(${translation},${this.margins.top})`)
-				.call(axis().scale(scale)); // add axis object
+				.call(axis(scale)); // add axis object
 		}
 		else {
 			throw "Invalid axis type";
@@ -118,7 +118,7 @@ class Graph {
 			};
 			this.display.select(`.${type}-axis`)
 				.transition().duration(duration)
-				.call(calls[type]().scale(scale)); // gives axis new scale
+				.call(calls[type](scale)); // gives axis new scale
 		}
 		else {
 			throw "Invalid axis type";
@@ -160,13 +160,21 @@ class LineGraph extends Graph {
 			.querySelectorAll(`.${name}`)[0]
 			.querySelectorAll("line"); // gets lines as normal DOM objects
 		let single_step = duration / lines.length
-		let line;
+		let line = d3.select(lines[0]);
+		let header = this.display.select(`.${name}`).append("text")
+			.attr("class", "small").style("fill", "white")
+			.attr("dy", "0.2em")
+			.attr("x", line.attr("x1")).attr("y", line.attr("y1"))
+			.text(name);
 
 		for(let i = 0; i < lines.length - 1; i++) {
 			line = d3.select(lines[i]);
 			line.transition().duration(single_step).delay(i * single_step)
 				.attr("x2", lines[i + 1].getAttribute("x1")) // moves line endpoint to next line
 				.attr("y2", lines[i + 1].getAttribute("y1"));
+			header.transition().duration(single_step).delay(i * single_step)
+				.attr("x", lines[i + 1].getAttribute("x1")) // moves line endpoint to next line
+				.attr("y", lines[i + 1].getAttribute("y1"));
 		};
 	};
 
