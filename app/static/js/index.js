@@ -49,6 +49,15 @@ const currencyChoices = {"USD":"United States Dollar",
 	"JPY":"Japanese Yen",
 	"CNY":"Chinese Yuan"};
 
+// event listeners to spawn selections options
+var leftCovid = document.getElementById("left-dataset").getElementsByTagName('a')
+leftCovid[0].addEventListener("click", function() {
+	revealSelections(leftCovid[0].innerHTML, "left")
+});
+leftCovid[1].addEventListener("click", function() {
+	revealSelections(leftCovid[1].innerHTML, "left")
+});
+
 // creates menus depending on which selections is clicked
 const revealSelections = function(keyword, datasetSide) {
 	d3.select("#options-menu")
@@ -56,18 +65,18 @@ const revealSelections = function(keyword, datasetSide) {
 		.select("button")
 			.text(keyword)
 			.enter();
+	d3.select("#options-menu")
+		.selectAll('a')
+		.remove();
 	if (keyword == "Currency"){
 		let currencyKeys = Object.keys(currencyChoices);
 		for (let i = 0; i < currencyKeys.length; i+=1) {
-			// console.log(currencyKeys[i], currencyChoices[currencyKeys[i]]);
 			d3.select("#options-menu")
 				.select("div")
 				.append("a")
 				.text(currencyChoices[currencyKeys[i]])
 				.attr("class", "dropdown-item")
 				.attr("value", currencyKeys[i]);
-			// console.log(option);
-			// console.log(currencyKeys[i]);
 		}
 	}
 }
