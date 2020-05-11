@@ -8,7 +8,6 @@ const currencies = [];
 const covid_data = "";
 const countries = [];
 
-
 const date_parse = d3.timeParse("%Y-%m-%d");
 const parse_covid = function(datum) {
 	return {
@@ -42,6 +41,43 @@ read_all(
 		graph.graph(data[0], "deaths", params, duration, "white");
 	}
 )
+
+const covidChoices = [];
+const currencyChoices = {"USD":"United States Dollar",
+	"EUR":"Euro",
+	"GBP":"British Pounds",
+	"JPY":"Japanese Yen",
+	"CNY":"Chinese Yuan"};
+
+// creates menus depending on which selections is clicked
+const revealSelections = function(keyword, datasetSide) {
+	d3.select("#options-menu")
+		.attr("hidden", null)
+		.select("button")
+			.text(keyword)
+			.enter();
+	if (keyword == "Currency"){
+		let currencyKeys = Object.keys(currencyChoices);
+		for (let i = 0; i < currencyKeys.length; i+=1) {
+			// console.log(currencyKeys[i], currencyChoices[currencyKeys[i]]);
+			d3.select("#options-menu")
+				.select("div")
+				.append("a")
+				.text(currencyChoices[currencyKeys[i]])
+				.attr("class", "dropdown-item")
+				.attr("value", currencyKeys[i]);
+			// console.log(option);
+			// console.log(currencyKeys[i]);
+		}
+	}
+}
+
+// function to reveal Right Dataset and build options
+const revealRightDataset = function() {
+	let right = document.getElementById("right-dataset");
+	right.removeAttribute("hidden");
+}
+
 // d3.csv(
 // 	"https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/app/data/covidData/worldwide-aggregated.csv",
 // 	parse_covid

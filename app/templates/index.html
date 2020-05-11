@@ -49,27 +49,34 @@
 							</button>
 						</div>
 						<!-- choose dataset -->
-						<div class="dropdown button-holder">
-							<button id="left-dataset" class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
+						<div id="left-dataset" class="dropdown button-holder">
+							<button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
 									Left Side Dataset
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/">Covid</a>
-								<a class="dropdown-item" href="#">Currency</a>
+								<a class="dropdown-item">Covid</a>
+								<!-- dropdown currencies: USD, EUR, GBP, JPY, CNY -->
+								<a class="dropdown-item">Currency</a>
 							</div>
 						</div>
-						<div hidden class="dropdown button-holder">
-							<button id="right-dataset" class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
+
+						<div hidden id="right-dataset" class="dropdown button-holder">
+							<button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
 									Right Side Dataset
 							</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="/">Covid</a>
-								<a class="dropdown-item" href="#">Currency</a>
+								<!-- Fill in remainder based on what left-dataset has -->
+								<!-- <a class="dropdown-item" href=" ">Value to display</a> -->
 							</div>
 						</div>
-					</div>
-					<div class="col">
-						<!-- Use for Legend later -->
+						<div hidden id="options-menu" class="dropdown button-holder">
+							<button class="btn btn-light dropdown-toggle btn-block" type="button" data-toggle="dropdown">
+
+							</button>
+							<div class="dropdown-menu">
+								<!-- d3 generated options go here -->
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
