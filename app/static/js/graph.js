@@ -13,24 +13,38 @@ class Graph {
 		this.width = svg_object.attr("width");
 		this.height = svg_object.attr("height");
 		this.margins = margins;
-		// this.data = [];
+		this.data = [];
 	};
 
-	/**
-	 * @param {Object[]} data - dataset, where each row is given by a prototype `{parameter: value ...}`
-	 * @param {Object} params - prototype describing the variables to graph
-	 * @param {string} params.x
-	 * @param {string} params.y
-	 * @returns {{x: Number[], y: Number[]}} Domain of x and y
+	/** Associates dataset with graph
+	 * @param {Object[]} data - dataset, where each row is given by `{date: ..., param: ...}`
+	 * @param {string} name - dataset name
+	 * @param {name} axis - takes the values "left", "right"
 	 */
-	static domain(data, params) {
-		return {
-			x: d3.extent(data, (datum) => {return datum[params.x]}),
-			y: d3.extent(data, (datum) => {return datum[params.y]}),
-		};
+	add_data(data, name, axis) {
+		this.data.push({
+			data: data,
+			axis: axis,
+			name: name
+		});
 	};
 
-	// domains(named_params)
+	axis_domain(axis) {
+		let limits = [];
+		for (let i = 0; i < this.data.length; i++) {
+			if (axis == "bottom") {
+				let extent = d3.extent(this.data[i].data, (datum) => {return datum.date});
+				limits.push(extent[0]);
+				limits.push(extent[1]);
+			}
+			else if (this.data[i].axis == axis) {
+				let extent = d3.extent(this.data[i].data, (datum) => {return datum.param});
+				limits.push(extent[0]);
+				limits.push(extent[1]);
+			};
+		};
+		return d3.extent(limits);
+	}
 
 	/** Accepts `[min, max]` to return a function which scales an input to fit within `[min, max]`.
 	 * @param {Number[]} domain - array of the form `[min, max]`, which does not neccessarily need to be a `Number[]`, can be a `Date`.
@@ -57,14 +71,7 @@ class Graph {
 		return scaler;
 	};
 
-	// add_data(data, name) {
-	// 	for(let i = 0; i < data.length; i++) {
-	// 		if (!this.data[i]) {
-	// 			this.data[i] = {};
-	// 		}
-	// 		this.data[i][name] = data[i];
-	// 	}
-	// };
+
 
 	/** Generates axis
 	 * @param {string} type -  Takes the values "left", "right", "bottom"
@@ -110,12 +117,12 @@ class Graph {
 	 */
 	adjust_axis(type, scale, domain, duration) {
 		scale.domain(domain); // new scale domain
-		if (type == "bottom" || type == "left" || type == "right") {
-			let calls = {
-				bottom: d3.axisBottom,
-				right: d3.axisRight,
-				left: d3.axisLeft
-			};
+		let calls = {
+			bottom: d3.axisBottom,
+			right: d3.axisRight,
+			left: d3.axisLeft
+		};
+		if (type in calls) {
 			this.display.select(`.${type}-axis`)
 				.transition().duration(duration)
 				.call(calls[type](scale)); // gives axis new scale
@@ -137,19 +144,40 @@ class LineGraph extends Graph {
 	 * @param {string} params.y
 	 * @param {string} color - color of line
 	 */
-	generate_points(data, name, params, color) {
-		let domain = Graph.domain(data, params);
-		let scale_x = (datum) => {return this.scale_horizontal(domain.x)(datum[params.x]);};
-		let scale_y = (datum) => {return this.scale_vertical(domain.y)(datum[params.y]);};
-		// ^ functions which scale an input to pixel size within the SVG
+	generate_points(color) {
+		let bottom_domain = this.axis_domain("bottom");
+		let left_domain = this.axis_domain("left");
+		let right_domain = this.axis_domain("right");
 
-		this.display.append("g").attr("class", `lines ${name}`) // generate zero-length lines
-			.attr("transform", `translate(${this.margins.left},${this.margins.top})`)
-			.selectAll("dot").data(data).enter().append("line")
-			.attr("x1", scale_x).attr("x2", scale_x)
-			.attr("y1", scale_y).attr("y2", scale_y)
-			.style("stroke", color).style("opacity", 1);
-	};
+		let scale_x = (datum) => {return this.scale_horizontal(bottom_domain)(datum.date)};
+		let scale_vertical = {};
+		if (left_domain[1]) {
+			scale_vertical.left = (datum) => {return this.scale_vertical(left_domain)(datum.param)};
+		};
+		if (right_domain[1]) {
+			scale_vertical.right = (datum) => {return this.scale_vertical(right_domain)(datum.param)};
+		};
+		for (let i = 0; i < this.data.length; i++) {
+			this.display.append("g")
+				.attr("class", `lines ${this.data[i].name.replace(" ", "_")}`)
+				.attr("transform", `translate(${this.margins.left},${this.margins.top})`)
+				.selectAll("dot").data(this.data[i].data).enter().append("line")
+				.attr("x1", scale_x).attr("x2", scale_x)
+				.attr("y1", scale_vertical[this.data[i].axis]).attr("y2", scale_vertical[this.data[i].axis])
+				.style("stroke", color).style("opacity", 1);
+		}
+
+	}
+
+	generate_axes() {
+		let bottom_domain = this.axis_domain("bottom");
+		let left_domain = this.axis_domain("left");
+		let right_domain = this.axis_domain("right");
+
+		this.generate_axis("bottom", bottom_domain);
+		this.generate_axis("left", left_domain);
+		this.generate_axis("right", right_domain);
+	}
 
 	/** Animates drawing of line graph
 	 * @param {string} name - name of line group (set by `generate_points`) to animate
@@ -157,11 +185,11 @@ class LineGraph extends Graph {
 	 */
 	animate_lines(name, duration) {
 		let lines = this.display.node()
-			.querySelectorAll(`.${name}`)[0]
+			.querySelectorAll(`.${name.replace(" ","_")}`)[0]
 			.querySelectorAll("line"); // gets lines as normal DOM objects
 		let single_step = duration / lines.length
 		let line = d3.select(lines[0]);
-		let header = this.display.select(`.${name}`).append("text")
+		let header = this.display.select(`.${name.replace(" ","_")}`).append("text")
 			.attr("class", "small").style("fill", "white")
 			.attr("dy", "0.2em")
 			.attr("x", line.attr("x1")).attr("y", line.attr("y1"))
@@ -178,16 +206,10 @@ class LineGraph extends Graph {
 		};
 	};
 
-	/** Graphs a dataset. Wrapper for `generate_points` and `animate_lines`.
-	 * @param {Object[]} data - dataset, where each row is given by a prototype `{parameter: value ...}`
-	 * @param {string} name - name of line, for internal use (conventionally, the name of the dataset)
-	 * @param {Object} params - prototype describing the variables to graph
-	 * @param {string} params.x
-	 * @param {string} params.y
-	 * @param {Number} duration - total duration of graphing animation in miliseconds
-	 */
-	graph(data, name, params, duration, color) {
-		this.generate_points(data, name, params, color);
-		this.animate_lines(name, duration);
-	};
+	graph_all(duration, color) {
+		this.generate_points(color);
+		for (let i = 0; i < this.data.length; i++) {
+			this.animate_lines(this.data[i].name, duration);
+		}
+	}
 };
