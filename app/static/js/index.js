@@ -42,7 +42,11 @@ read_all(
 	}
 )
 
-const covidChoices = [];
+const covidChoices = ["US",
+	"Germany",
+	"United Kingdom",
+	"Japan",
+	"China"];
 const currencyChoices = {"USD":"United States Dollar",
 	"EUR":"Euro",
 	"GBP":"British Pounds",
@@ -50,12 +54,21 @@ const currencyChoices = {"USD":"United States Dollar",
 	"CNY":"Chinese Yuan"};
 
 // event listeners to spawn selections options
-var leftCovid = document.getElementById("left-dataset").getElementsByTagName('a')
-leftCovid[0].addEventListener("click", function() {
-	revealSelections(leftCovid[0].innerHTML, "left")
+// for left
+var left = document.getElementById("left-dataset").getElementsByTagName('a');
+left[0].addEventListener("click", function() {
+	revealSelections(left[0].innerHTML, "left")
 });
-leftCovid[1].addEventListener("click", function() {
-	revealSelections(leftCovid[1].innerHTML, "left")
+left[1].addEventListener("click", function() {
+	revealSelections(left[1].innerHTML, "left")
+});
+// for right
+var right = document.getElementById("right-dataset").getElementsByTagName('a');
+right[0].addEventListener("click", function() {
+	revealSelections(left[0].innerHTML, "right")
+});
+right[1].addEventListener("click", function() {
+	revealSelections(left[1].innerHTML, "right")
 });
 
 // creates menus depending on which selections is clicked
@@ -73,27 +86,74 @@ const revealSelections = function(keyword, datasetSide) {
 	if (keyword == "Currency"){
 		let currencyKeys = Object.keys(currencyChoices);
 		for (let i = 0; i < currencyKeys.length; i+=1) {
-			d3.select("#options-menu")
-				.select("div")
-				.append("a")
-				.text(currencyChoices[currencyKeys[i]])
-				.attr("class", "dropdown-item")
-				.attr("value", currencyKeys[i]);
+			if (!(currency_base == currencyKeys[i] || currencies.includes(currencyKeys[i]))) {
+				d3.select("#options-menu")
+					.select("div")
+					.append("a")
+					.text(currencyChoices[currencyKeys[i]])
+					.attr("class", "dropdown-item")
+					.attr("value", currencyKeys[i]);
+			}
+		}
+		var currencyButtons = document.getElementById("options-menu").getElementsByTagName("a");
+		for (let i = 0; i < currencyButtons.length; i += 1) {
+			// sets baseline currency
+			if (datasetSide == "left") {
+				currencyButtons[i].addEventListener("click", function(e) {
+					currency_base = currencyButtons[i].getAttribute("value");
+					d3.select("#options-menu")
+						.attr("hidden", true);
+					revealRightDataset();
+				});
+			}
+			// adds comparison currencies
+			if (datasetSide == "right") {
+				currencyButtons[i].addEventListener("click", function(e) {
+					currencies.push(currencyButtons[i].getAttribute("value"));
+					d3.select("#options-menu")
+						.attr("hidden", true);
+					revealRightDataset();
+				});
+			}
 		}
 	}
-	// when buttons are clicked, changes base USD
-	var currencyButtons = document.getElementById("options-menu").getElementsByTagName("a");
-	for (let i = 0; i < currencyButtons.length; i += 1) {
-		currencyButtons[i].addEventListener("click", function(e) {
-			currency_base = currencyButtons[i].getAttribute("value");
-			d3.select("#options-menu")
-				.attr("hidden", true)
-		})
-	}
+	else if (keyword == "Covid") {
+		for (let i = 0; i < covidChoices.length; i+=1) {
+			if (!(covid_data == covidChoices[i] || countries.includes(covidChoices[i]))) {
+				d3.select("#options-menu")
+					.select("div")
+					.append("a")
+					.text(covidChoices[i])
+					.attr("class", "dropdown-item")
+					.attr("value", covidChoices[i]);
+			}
+		}
+		var countryButtons = document.getElementById("options-menu").getElementsByTagName("a");
+		for (let i = 0; i < countryButtons.length; i += 1) {
+			// sets baseline country
+			if (datasetSide == "left") {
+				countryButtons[i].addEventListener("click", function(e) {
+					covid_data = countryButtons[i].getAttribute("value");
+					d3.select("#options-menu")
+						.attr("hidden", true);
+					revealRightDataset();
+				});
+			}
+			// adds comparison currencies
+			if (datasetSide == "right") {
+				countryButtons[i].addEventListener("click", function(e) {
+					countries.push(countryButtons[i].getAttribute("value"));
+					d3.select("#options-menu")
+						.attr("hidden", true);
+					revealRightDataset();
+				});
+			}
+		}
+		}
 }
 
 // function to reveal Right Dataset and build options
 const revealRightDataset = function() {
-	let right = document.getElementById("right-dataset");
-	right.removeAttribute("hidden");
+	d3.select("#right-dataset")
+		.attr("hidden", null);
 }

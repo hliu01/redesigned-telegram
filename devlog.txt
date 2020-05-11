@@ -134,3 +134,10 @@ xiedengD -- 2020-05-11 01:58
 
 xiedengD -- 2020-05-11 02:11
     - listeners hide option menu and selects base currency
+
+xiedengD -- 2020-05-11 02:31
+    - right listeners add currency to currencies array for comparison
+
+xiedengD -- 2020-05-11 02:54
+    - added functional inputs for countries;
+        with matching currency
