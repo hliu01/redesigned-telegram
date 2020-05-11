@@ -1,4 +1,38 @@
 # Stonks by redesigned-telegram
+
+redesigned-telegram
+
+SoftDev pd1
+
+P04: Let the Data Speak
+
+2020-05-11
+
+
+# Roster
+Henry (PM)
+- Host project and maintain devlog
+- Plan deadlines
+- Delegate taskse
+
+Clement Chan
+- Backend
+- Sanitize and format data
+
+Yevgeniy Gorbachev
+-Frontend
+- Graphing animation
+- Set up flask routes
+
+David Xiedeng
+- Create Buttons
+- Bootstrap to beautify app
+
+# Description/Summary
+The purpose of this site is to understand the effect of COVID-19 on other aspects, namely the economic aspects. We’ll chart the change in exchange rates of various affected nations, with regards to the change in corona virus infection rates over time. We’ll start with the USD as the baseline for comparison, and allow the user to add to the graph more data over time.
+ 
+
+
 ## How to Run the Project:  
 ### Requirements:
 Python3 and pip is required to run the project  

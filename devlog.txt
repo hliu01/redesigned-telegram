@@ -119,3 +119,12 @@ xiedengD - 2020-05-07 01:55
     - readded CSS changes
     - changed color of top bar
     - added bottom bar
+
+chanC - 2020-05-10 16:04
+    - Added instructions for /data route
+    - Moved all makeData code to utl
+
+gorbachevY -- 2020-05-10 21:30
+	- added axis animation function
+	- generalized axis creation
+	- added line label

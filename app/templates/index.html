@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 
-{% block title %}Worldwide deaths{% endblock %}
+{% block title %}Placeholder{% endblock %}
 
 {% block head %}
 <title>Stonks</title>
@@ -84,50 +84,6 @@
 
 {% block scripts %}
 <script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-<script src="./static/js/graph.js" charset="utf-8"></script>
-<script>
-	// gets width of container
-	let graph1Container = document.getElementById("col-graph");
-	let graph1 = document.getElementById("graph1");
-	graph1.setAttribute("width", graph1Container.offsetWidth - 40);
-
-	const graph = new LineGraph(d3.select("#graph1"), {top: 10, bottom: 30, left: 70, right: 10});
-	const params_death = {x: 'date', y: 'deaths'};
-	const date_parse = d3.timeParse("%Y-%m-%d");
-
-	const generate_axes = function(data) {
-		let domain = Graph.domain(data, params_death);
-		let x_scale = d3.scaleTime().domain(domain.x)
-			.range([0, graph.width - (graph.margins.right + graph.margins.left)]);
-		let y_scale = d3.scaleLinear().domain(domain.y)
-			.range([graph.height - (graph.margins.bottom + graph.margins.top), 0]);
-
-		graph.display.append("g").attr("class", "x-axis white-path white-text")
-			.attr("transform",`translate(${graph.margins.left},${graph.height - graph.margins.bottom})`)
-			.call(d3.axisBottom().scale(x_scale));
-		graph.display.append("g").attr("class", "y-axis-left white-path white-text")
-			.attr("transform",`translate(${graph.margins.left},${graph.margins.top})`)
-			.call(d3.axisLeft().scale(y_scale));
-	}
-
-	d3.csv(
-		"https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/app/data/covidData/worldwide-aggregated.csv",
-		(datum) => {
-			return {
-				date: date_parse(datum.date),
-				confirmed: parseInt(datum.confirmed),
-				recovered: parseInt(datum.recovered),
-				deaths: parseInt(datum.deaths)
-			};
-		}
-	).then(
-		(data) => {
-			let domain = Graph.domain(data, params_death);
-
-			generate_axes(data);
-
-			graph.graph(data, "deaths", params_death, 10000, "white");
-		}
-	);
-</script>
+<script src="/static/js/graph.js" charset="utf-8"></script>
+<script src="/static/js/index.js" charset="utf-8"></script>
 {% endblock %}
