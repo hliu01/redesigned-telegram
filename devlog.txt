@@ -128,3 +128,9 @@ gorbachevY -- 2020-05-10 21:30
 	- added axis animation function
 	- generalized axis creation
 	- added line label
+
+xiedengD -- 2020-05-11 01:58
+    - listeners added to left-currency
+
+xiedengD -- 2020-05-11 02:11
+    - listeners hide option menu and selects base currency

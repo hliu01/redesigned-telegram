@@ -3,10 +3,10 @@ let graph1Container = document.getElementById("col-graph");
 let graph1 = document.getElementById("graph1");
 graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 
-const currency_base = "";
-const currencies = [];
-const covid_data = "";
-const countries = [];
+var currency_base = "";
+var currencies = [];
+var covid_data = "";
+var countries = [];
 
 const date_parse = d3.timeParse("%Y-%m-%d");
 const parse_covid = function(datum) {
@@ -60,6 +60,7 @@ leftCovid[1].addEventListener("click", function() {
 
 // creates menus depending on which selections is clicked
 const revealSelections = function(keyword, datasetSide) {
+	//unhides options-menu
 	d3.select("#options-menu")
 		.attr("hidden", null)
 		.select("button")
@@ -68,6 +69,7 @@ const revealSelections = function(keyword, datasetSide) {
 	d3.select("#options-menu")
 		.selectAll('a')
 		.remove();
+	// adds options to option menu; assigns values
 	if (keyword == "Currency"){
 		let currencyKeys = Object.keys(currencyChoices);
 		for (let i = 0; i < currencyKeys.length; i+=1) {
@@ -79,6 +81,15 @@ const revealSelections = function(keyword, datasetSide) {
 				.attr("value", currencyKeys[i]);
 		}
 	}
+	// when buttons are clicked, changes base USD
+	var currencyButtons = document.getElementById("options-menu").getElementsByTagName("a");
+	for (let i = 0; i < currencyButtons.length; i += 1) {
+		currencyButtons[i].addEventListener("click", function(e) {
+			currency_base = currencyButtons[i].getAttribute("value");
+			d3.select("#options-menu")
+				.attr("hidden", true)
+		})
+	}
 }
 
 // function to reveal Right Dataset and build options
@@ -86,19 +97,3 @@ const revealRightDataset = function() {
 	let right = document.getElementById("right-dataset");
 	right.removeAttribute("hidden");
 }
-
-// d3.csv(
-// 	"https://raw.githubusercontent.com/hliu01/redesigned-telegram/master/app/data/covidData/worldwide-aggregated.csv",
-// 	parse_covid
-// ).then(
-// 	(data) => {
-// 		let graph = new LineGraph(d3.select("#graph1"), {top: 10, bottom: 30, left: 70, right: 70});
-// 		let params = {x: 'date', y: 'deaths'};
-// 		let domain = Graph.domain(data, params);
-
-// 		graph.generate_axis("bottom", domain.x);
-// 		graph.generate_axis("right", domain.y);
-
-// 		graph.graph(data, "deaths", params, duration, "white");
-// 	}
-// );
