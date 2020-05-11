@@ -136,3 +136,6 @@ gorbachevY -- 2020-05-11 01:10
 	- finished simultaneous graphing
 	- added js variables for user selection
 	- added wrapper function for execution code
+	
+gorbachevY -- 2020-05-11 01:45
+	- expanded placeholders
