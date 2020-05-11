@@ -3,6 +3,8 @@ let graph1Container = document.getElementById("col-graph");
 let graph1 = document.getElementById("graph1");
 graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 
+// EXAMPLES AS DEFAULT
+// SET BY USER IN PRODUCTION
 const currency_base = "USD";
 const currencies = ["CNY", "EUR"];
 const covid_param = "deaths";
@@ -11,7 +13,6 @@ const start = "2020-02-20";
 const end = "2020-04-20";
 
 const parseDate = d3.timeParse("%Y-%m-%d");
-
 /** Returns function that parses date and desired dependent from dataset
  * @param {string} param - desired dependent variable
  */
@@ -32,8 +33,7 @@ const parse_covid = function(datum) {
 		deaths: parseInt(datum.deaths)
 	};
 };
-const duration = 10000;
-const datasets = [];
+
 
 /** Uses constants to generate requests for data
  */
@@ -82,24 +82,29 @@ const read_all = function(requests, callback) {
 	});
 };
 
-requests = generate_requests();
-let graph = new LineGraph(d3.select("#graph1"), {top: 10, bottom: 30, left: 70, right: 70});
+main = function() {
+	let duration = 10000;
+	let requests = generate_requests();
+	let graph = new LineGraph(d3.select("#graph1"), {top: 10, bottom: 30, left: 70, right: 70});
 
-read_all(
-	requests.covid,
-	(covid_data) => {
-		read_all(
-			requests.currency,
-			(currency_data) => {
-				for (let i in covid_data) {
-					graph.add_data(covid_data[i], countries[i], "left");
-				};
-				for (let i in currency_data) {
-					graph.add_data(currency_data[i], currencies[i], "right");
-				};
-				graph.generate_axes()
-				graph.graph_all(10000, "white");
-			}
-		)
-	}
-);
+	read_all(
+		requests.covid,
+		(covid_data) => {
+			read_all(
+				requests.currency,
+				(currency_data) => {
+					for (let i in covid_data) {
+						graph.add_data(covid_data[i], countries[i], "left");
+					};
+					for (let i in currency_data) {
+						graph.add_data(currency_data[i], currencies[i], "right");
+					};
+					graph.generate_axes()
+					graph.graph_all(duration, "white");
+				}
+			)
+		}
+	);
+}
+
+main()

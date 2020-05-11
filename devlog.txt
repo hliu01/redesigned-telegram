@@ -130,4 +130,9 @@ gorbachevY -- 2020-05-10 21:30
 	- added line label
 
 liuH -- 2020-05-10 22:30
-  - Updated design doc
+    - Updated design doc
+
+gorbachevY -- 2020-05-11 01:10
+	- finished simultaneous graphing
+	- added js variables for user selection
+	- added wrapper function for execution code
