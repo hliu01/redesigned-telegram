@@ -25,16 +25,6 @@ const parse_param = function(param) {
 	};
 };
 
-const parse_covid = function(datum) {
-	return {
-		date: date_parse(datum.date),
-		confirmed: parseInt(datum.confirmed),
-		recovered: parseInt(datum.recovered),
-		deaths: parseInt(datum.deaths)
-	};
-};
-
-
 /** Uses constants to generate requests for data
  */
 const generate_requests = function() {
@@ -73,6 +63,13 @@ const generate_requests = function() {
 	}
 }
 
+/**
+ *
+ * @param {Object[]} requests - array of objects
+ * @param {string} requests[].url - request url
+ * @param {string} requests[].param - independent variable
+ * @param {(data) => {}} callback
+ */
 const read_all = function(requests, callback) {
 	for (let i = 0; i < requests.length; i++) {
 		requests[i] = d3.csv(requests[i].url, parse_param(requests[i].param));
