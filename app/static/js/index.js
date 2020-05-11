@@ -45,8 +45,11 @@ read_all(
 const covidChoices = ["US",
 	"Germany",
 	"United Kingdom",
+	"France",
+	"Italy",
 	"Japan",
 	"China"];
+
 const currencyChoices = {"USD":"United States Dollar",
 	"EUR":"Euro",
 	"GBP":"British Pounds",
