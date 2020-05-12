@@ -125,17 +125,21 @@ chanC - 2020-05-10 16:04
     - Moved all makeData code to utl
 
 gorbachevY -- 2020-05-10 21:30
-	- added axis animation function
-	- generalized axis creation
-	- added line label
+    - added axis animation function
+    - generalized axis creation
+    - added line label
 
 liuH -- 2020-05-10 22:30
     - Updated design doc
 
 gorbachevY -- 2020-05-11 01:10
-	- finished simultaneous graphing
-	- added js variables for user selection
-	- added wrapper function for execution code
+    - finished simultaneous graphing
+    - added js variables for user selection
+    - added wrapper function for execution code
 	
 gorbachevY -- 2020-05-11 01:45
-	- expanded placeholders
+    - expanded placeholders
+
+chanC -- 2020-05-12 17:45
+    - Updated data with most up to date data (up to 5-10)
+    - Fixed incosistencies in country names (US -> United States)
