@@ -6,7 +6,7 @@ import urllib.request
 import json
 
 countryIdx = {'World': 0}
-with open('app/covidData/countries-aggregated.csv') as f:
+with open('covidData/countries-aggregated.csv') as f:
     for line in f.readlines():
         name=line.split(',')[1]
         if name != 'country' and name not in countryIdx.keys():
@@ -22,17 +22,17 @@ c.execute('INSERT OR REPLACE INTO countries(name , id) VALUES("World",0);')
 with open('covidData/countries-aggregated.csv', newline='\n') as countries:
     reader = csv.DictReader(countries)
     for row in reader:
-        countryCommand = 'INSERT OR REPLACE INTO countries(name, id) VALUES(\"' + row['country'] + '\", ' + str(countryIdx[row['country']]) + ');'
+        countryCommand = 'INSERT OR REPLACE INTO countries(name, id) VALUES(\"' + row['Country'] + '\", ' + str(countryIdx[row['Country']]) + ');'
         c.execute(countryCommand)
         #print(row)
-        command = 'INSERT INTO data(countryID, date, confirmed, deaths, recovered) VALUES(' + str(countryIdx[row['country']]) + ', \"'+ row['date'] + '\", ' + row['confirmed'] + ', ' + row['deaths'] + ', ' + row['recovered'] + ');'
+        command = 'INSERT INTO data(countryID, date, confirmed, deaths, recovered) VALUES(' + str(countryIdx[row['Country']]) + ', \"'+ row['Date'] + '\", ' + row['Confirmed'] + ', ' + row['Deaths'] + ', ' + row['Recovered'] + ');'
         #print(command)
         c.execute(command)
 
 with open('covidData/worldwide-aggregated.csv', newline='\n') as worldwide:
     reader = csv.DictReader(worldwide)
     for row in reader:
-        command = 'INSERT INTO data(countryID, date, confirmed, deaths, recovered) VALUES(0, \"' + row['date'] + '\", ' + row['confirmed'] + ', ' + row['deaths'] + ', ' + row['recovered'] + ');'
+        command = 'INSERT INTO data(countryID, date, confirmed, deaths, recovered) VALUES(0, \"' + row['Date'] + '\", ' + row['Confirmed'] + ', ' + row['Deaths'] + ', ' + row['Recovered'] + ');'
         #print(command)
         c.execute(command)
 

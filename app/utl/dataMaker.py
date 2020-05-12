@@ -1,12 +1,12 @@
 import sqlite3
 
 def makeData(dataType, country, startDate, endDate, cell):
-    if startDate < "2020-01-22" and endDate > "2020-04-25":
-        makeData(dataType, country, "2020-01-22", "2020-04-25", cell)
+    if startDate < "2020-01-22" and endDate > "2020-05-10":
+        makeData(dataType, country, "2020-01-22", "2020-05-10", cell)
     elif startDate < "2020-01-22":
         makeData(dataType, country, "2020-01-22", endDate, cell)
-    elif endDate > "2020-04-25":
-        makeData(dataType, country, startDate, "2020-04-25", cell)
+    elif endDate > "2020-05-10":
+        makeData(dataType, country, startDate, "2020-05-10", cell)
     else:
         if dataType == '1':
             currency(country, startDate, endDate, cell)

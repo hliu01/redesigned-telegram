@@ -1,5 +1,5 @@
 from flask import *
-from utl.dataMaker import *
+from app.utl.dataMaker import *
 
 
 app = Flask(__name__)
