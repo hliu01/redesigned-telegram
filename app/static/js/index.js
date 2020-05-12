@@ -72,6 +72,13 @@ const generate_requests = function() {
 	}
 }
 
+/**
+ *
+ * @param {Object[]} requests - array of objects
+ * @param {string} requests[].url - request url
+ * @param {string} requests[].param - independent variable
+ * @param {(data) => {}} callback
+ */
 const read_all = function(requests, callback) {
 	for (let i = 0; i < requests.length; i++) {
 		requests[i] = d3.csv(requests[i].url, parse_param(requests[i].param));

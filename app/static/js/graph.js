@@ -29,6 +29,9 @@ class Graph {
 		});
 	};
 
+	/** Determines the overall domain of the variables on a particular axis.
+	 * @param {string} axis - takes the values "left", "right", "bottom"
+	 */
 	axis_domain(axis) {
 		let limits = [];
 		for (let i = 0; i < this.data.length; i++) {
@@ -136,12 +139,7 @@ class Graph {
 
 class LineGraph extends Graph {
 
-	/** Uses dataset to generate points as zero-length lines
-	 * @param {Object[]} data - dataset, where each row is given by a prototype `{parameter: value ...}`
-	 * @param {string} name - name of line, for internal use (conventionally, the name of the dataset)
-	 * @param {Object} params - prototype describing the variables to graph
-	 * @param {string} params.x
-	 * @param {string} params.y
+	/** Uses the `data` member to generate sets of zero-length lines, to be animated into line segments
 	 * @param {string} color - color of line
 	 */
 	generate_points(color) {
@@ -169,6 +167,8 @@ class LineGraph extends Graph {
 
 	}
 
+	/** Uses the `data` member to generate axes
+	 */
 	generate_axes() {
 		let bottom_domain = this.axis_domain("bottom");
 		let left_domain = this.axis_domain("left");
