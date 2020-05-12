@@ -152,3 +152,8 @@ xiedengD -- 2020-05-11 02:31
 xiedengD -- 2020-05-11 02:54
     - added functional inputs for countries;
         with matching currency
+
+xiedengD -- 2020-05-12 17:20
+    - reworking UI
+        ~ removed buttons
+        ~ added checkboxes, background not yet implemented

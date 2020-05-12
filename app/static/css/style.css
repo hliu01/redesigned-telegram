@@ -9,7 +9,7 @@
 	border-color: #ffffff;
 	display: inline-block;
 	padding-bottom: 10px;
-	margin-bottom: 30px;
+	margin: 15px
 }
 
 .graph {
@@ -24,17 +24,16 @@
 	fill: #ffffff;
 }
 
-.text{
+.text {
 	color: #ffffff;
 }
 
-.button-holder{
-  padding: 5px;
-  width: 180px;
-}
-
-#button-group{
-  padding-top: 15px;
+#input-selections {
+	background-color: #15628E;
+	color: black;
+	padding: 15px;
+	border-radius: 20px;
+	margin: 15px;
 }
 
 #bottom-bar{

@@ -6,7 +6,7 @@ graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 // EXAMPLES AS DEFAULT
 // SET BY USER IN PRODUCTION
 var currency_base = "USD";
-var currencies = [];
+const currencies = [];
 const covid_param = "confirmed";
 var countries = [];
 const start = "2020-01-20";
@@ -104,9 +104,9 @@ main = function() {
 			)
 		}
 	);
-}
 
-main();
+	console.log(currency_base, currencies, countries);
+}
 
 const covidChoices = ["US",
 	"Germany",
@@ -122,23 +122,23 @@ const currencyChoices = {"USD":"United States Dollar",
 	"JPY":"Japanese Yen",
 	"CNY":"Chinese Yuan"};
 
-// event listeners to spawn selections options
-// for left
-var left = document.getElementById("left-dataset").getElementsByTagName('a');
-left[0].addEventListener("click", function() {
-	revealSelections(left[0].innerHTML, "left")
-});
-left[1].addEventListener("click", function() {
-	revealSelections(left[1].innerHTML, "left")
-});
-// for right
-var right = document.getElementById("right-dataset").getElementsByTagName('a');
-right[0].addEventListener("click", function() {
-	revealSelections(left[0].innerHTML, "right")
-});
-right[1].addEventListener("click", function() {
-	revealSelections(left[1].innerHTML, "right")
-});
+// // event listeners to spawn selections options
+// // for left
+// var left = document.getElementById("left-dataset").getElementsByTagName('a');
+// left[0].addEventListener("click", function() {
+// 	revealSelections(left[0].innerHTML, "left")
+// });
+// left[1].addEventListener("click", function() {
+// 	revealSelections(left[1].innerHTML, "left")
+// });
+// // for right
+// var right = document.getElementById("right-dataset").getElementsByTagName('a');
+// right[0].addEventListener("click", function() {
+// 	revealSelections(left[0].innerHTML, "right")
+// });
+// right[1].addEventListener("click", function() {
+// 	revealSelections(left[1].innerHTML, "right")
+// });
 
 // creates menus depending on which selections is clicked
 const revealSelections = function(keyword, datasetSide) {
@@ -204,10 +204,9 @@ const revealSelections = function(keyword, datasetSide) {
 			// sets baseline country
 			if (datasetSide == "left") {
 				countryButtons[i].addEventListener("click", function(e) {
-					covid_data = countryButtons[i].getAttribute("value");
+					countries.push(countryButtons[i].getAttribute("value"));
 					d3.select("#options-menu")
 						.attr("hidden", true);
-					revealRightDataset();
 					main();
 				});
 			}
@@ -217,7 +216,6 @@ const revealSelections = function(keyword, datasetSide) {
 					countries.push(countryButtons[i].getAttribute("value"));
 					d3.select("#options-menu")
 						.attr("hidden", true);
-					revealRightDataset();
 					main();
 				});
 			}
