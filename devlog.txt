@@ -143,3 +143,4 @@ gorbachevY -- 2020-05-11 01:45
 chanC -- 2020-05-12 17:45
     - Updated data with most up to date data (up to 5-10)
     - Fixed incosistencies in country names (US -> United States)
+    - Update design doc
