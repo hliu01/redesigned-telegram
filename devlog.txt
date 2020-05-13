@@ -169,3 +169,6 @@ xiedengD -- 2020-05-12 19:57
 
 xiedengD -- 2020-05-12 20:17
     - changed checkbox tracking to update array variables
+
+xiedengD -- 2020-05-12 20:21
+    - added checkbox tracking to currency

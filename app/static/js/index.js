@@ -176,6 +176,20 @@ const createCheckboxesOf = function(sideID, choices) {
 	// adds Event listeners to check boxes
 	for (let choice in choiceIDs) {
 		temp = document.getElementById(choiceIDs[choice]).parentElement;
+		if (choices == currencyChoices){
+			temp.addEventListener("mousedown", function(e) {
+				if (currencies.includes(choiceIDs[choice])) {
+					//swaps last element with this element
+					currencies[currencies.indexOf(choiceIDs[choice])] = currencies[currencies.length - 1]
+					// removes this element
+					console.log(currencies.pop())
+				}
+				else {
+					currencies.push(choiceIDs[choice]);
+				}
+				console.log(currencies);
+			})
+		}
 		if (choices == covidChoices){
 			temp.addEventListener("mousedown", function(e) {
 				if (countries.includes(choiceIDs[choice])) {
