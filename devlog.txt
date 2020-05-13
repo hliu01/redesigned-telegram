@@ -160,3 +160,6 @@ xiedengD -- 2020-05-12 17:20
 
 xiedengD -- 2020-05-12 18:11
     - added styling to input UI
+
+xiedengD -- 2020-05-12 21:22
+    - have checkbox addition working

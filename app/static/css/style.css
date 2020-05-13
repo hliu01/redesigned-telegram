@@ -36,14 +36,6 @@
 	margin: 15px;
 }
 
-#right-input-col {
-	padding-left: 0px;
-}
-
-#left-input-col {
-	padding-right: 0px;
-}
-
 .input-headers {
 	padding-left: 30px;
 	font-size: 24px;
@@ -52,6 +44,7 @@
 .input-options {
 	width: 100%;
 	padding: 10px;
+	border-radius: 7px;
 	background-color: #49ADE6;
 }
 
