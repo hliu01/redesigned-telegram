@@ -153,7 +153,31 @@ xiedengD -- 2020-05-11 02:54
     - added functional inputs for countries;
         with matching currency
 
+xiedengD -- 2020-05-12 17:20
+    - reworking UI
+        ~ removed buttons
+        ~ added checkboxes, background not yet implemented
+
 chanC -- 2020-05-12 17:45
     - Updated data with most up to date data (up to 5-10)
     - Fixed incosistencies in country names (US -> United States)
     - Update design doc
+
+xiedengD -- 2020-05-12 18:11
+    - added styling to input UI
+
+xiedengD -- 2020-05-12 19:22
+    - have checkbox addition working
+
+xiedengD -- 2020-05-12 19:57
+    - added checkbox tracking
+
+xiedengD -- 2020-05-12 20:17
+    - changed checkbox tracking to update array variables
+
+xiedengD -- 2020-05-12 20:21
+    - added checkbox tracking to currency
+
+xiedengD -- 2020-05-12 20:27
+    - event listener added to button
+    - slight updates to look

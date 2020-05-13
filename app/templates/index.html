@@ -33,40 +33,36 @@
 					</svg>
 				</div>
 			</div>
-			<!-- sidebar for buttons and legend -->
-			<div class="col-auto">
+		</div>
+		<!-- sidebar for buttons and legend -->
+		<div class="row">
+			<div id="input-selections">
 				<div class="row">
-					<!-- button group -->
-					<div id="button-group" class="col no-gutters">
-						<!-- choose dataset -->
-						<div id="left-dataset" class="dropdown button-holder">
-							<button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
-									Left Side Dataset
-							</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item">Covid</a>
-								<a class="dropdown-item">Currency</a>
-							</div>
+					<!-- left side:currencies	 -->
+					<div id="left-input-col" class="col-auto">
+						<div class="input-headers">
+							Left Axis
 						</div>
-
-						<div hidden id="right-dataset" class="dropdown button-holder">
-							<button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">
-									Right Side Dataset
-							</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item">Covid</a>
-								<a class="dropdown-item">Currency</a>
-							</div>
-						</div>
-						<div hidden id="options-menu" class="dropdown button-holder">
-							<button class="btn btn-light dropdown-toggle btn-block" type="button" data-toggle="dropdown">
-
-							</button>
-							<div class="dropdown-menu">
-								<!-- d3 generated options go here -->
-							</div>
+						<div class="input-options">
+							<!-- to be filled by d3 -->
+							<!-- contains all currency choices -->
 						</div>
 					</div>
+					<!-- right side:countries -->
+					<div id="right-input-col" class="col-auto">
+						<div class="input-headers">
+							Right Axis
+						</div>
+						<div class="input-options">
+							<!-- to be filled by d3 -->
+							<!-- contains all country choices -->
+						</div>
+					</div>
+					<dic class="col-auto">
+						<button id="graph-button" class="btn btn-light mb-2">
+							Run Graph
+						</button>
+					</dic>
 				</div>
 			</div>
 		</div>

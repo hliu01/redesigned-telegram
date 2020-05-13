@@ -6,7 +6,7 @@ graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 // EXAMPLES AS DEFAULT
 // SET BY USER IN PRODUCTION
 var currency_base = "USD";
-var currencies = [];
+const currencies = [];
 const covid_param = "confirmed";
 var countries = [];
 const start = "2020-01-20";
@@ -111,9 +111,9 @@ main = function() {
 			)
 		}
 	);
-}
 
-main();
+	console.log(currency_base, currencies, countries);
+}
 
 const covidChoices = ["US",
 	"Germany",
@@ -123,117 +123,105 @@ const covidChoices = ["US",
 	"Japan",
 	"China"];
 
-const currencyChoices = {"USD":"United States Dollar",
+const currencyChoices = {
 	"EUR":"Euro",
 	"GBP":"British Pounds",
 	"JPY":"Japanese Yen",
 	"CNY":"Chinese Yuan"};
 
-// event listeners to spawn selections options
-// for left
-var left = document.getElementById("left-dataset").getElementsByTagName('a');
-left[0].addEventListener("click", function() {
-	revealSelections(left[0].innerHTML, "left")
-});
-left[1].addEventListener("click", function() {
-	revealSelections(left[1].innerHTML, "left")
-});
-// for right
-var right = document.getElementById("right-dataset").getElementsByTagName('a');
-right[0].addEventListener("click", function() {
-	revealSelections(left[0].innerHTML, "right")
-});
-right[1].addEventListener("click", function() {
-	revealSelections(left[1].innerHTML, "right")
-});
+// creates options based on the input
+// #*-input-col and one of the constants *Choices
+const createCheckboxesOf = function(sideID, choices) {
+	// determine which array is being used
+	var choiceIDs;
+	if (choices[0] == undefined) {
+		choiceIDs = Object.keys(choices);
+	}
+	else {
+		choiceIDs = choices;
+	}
+	var choicelabels = Object.values(choices);
 
-// creates menus depending on which selections is clicked
-const revealSelections = function(keyword, datasetSide) {
-	//unhides options-menu
-	d3.select("#options-menu")
-		.attr("hidden", null)
-		.select("button")
-			.text(keyword)
-			.enter();
-	d3.select("#options-menu")
-		.selectAll('a')
-		.remove();
-	// adds options to option menu; assigns values
-	if (keyword == "Currency"){
-		let currencyKeys = Object.keys(currencyChoices);
-		for (let i = 0; i < currencyKeys.length; i+=1) {
-			if (!(currency_base == currencyKeys[i] || currencies.includes(currencyKeys[i]))) {
-				d3.select("#options-menu")
-					.select("div")
-					.append("a")
-					.text(currencyChoices[currencyKeys[i]])
-					.attr("class", "dropdown-item")
-					.attr("value", currencyKeys[i]);
-			}
+	// select in input selections
+	// choose depending on side
+	// create form-check
+	// create form-input
+	// create form-label
+
+	d3.select(sideID)
+		.select(".input-options")
+		.selectAll("div")
+		// creates outer form check block
+		.data(choiceIDs).enter()
+		.append("div")
+			.attr("class", "form-check")
+			.attr("checked", "false")
+			// creates actual checkbox
+			.append("input")
+				.attr("class", "form-check-input")
+				.attr("type", "checkbox")
+				.attr("id", function(d) {
+					return d;
+				});
+	// attaches labels to checkboxes
+	d3.select(sideID)
+		.select(".input-options")
+		.selectAll("div")
+		.append("label")
+			.attr("class", "form-check-label")
+			.attr("for",function(d) {
+				return d;
+			});
+	// attaches text in labels
+	d3.select(sideID)
+		.select(".input-options")
+		.selectAll("label")
+		.data(choicelabels)
+		.text(function (d) {
+			return d;
+		});
+	// adds Event listeners to check boxes
+	for (let choice in choiceIDs) {
+		temp = document.getElementById(choiceIDs[choice]).parentElement;
+		if (choices == currencyChoices){
+			temp.addEventListener("mousedown", function(e) {
+				if (currencies.includes(choiceIDs[choice])) {
+					//swaps last element with this element
+					currencies[currencies.indexOf(choiceIDs[choice])] = currencies[currencies.length - 1];
+					// removes this element
+					console.log(currencies.pop());
+				}
+				else {
+					currencies.push(choiceIDs[choice]);
+				}
+				console.log(currencies);
+			})
 		}
-		var currencyButtons = document.getElementById("options-menu").getElementsByTagName("a");
-		for (let i = 0; i < currencyButtons.length; i += 1) {
-			// sets baseline currency
-			if (datasetSide == "left") {
-				currencyButtons[i].addEventListener("click", function(e) {
-					currency_base = currencyButtons[i].getAttribute("value");
-					d3.select("#options-menu")
-						.attr("hidden", true);
-					revealRightDataset();
-					main();
-				});
-			}
-			// adds comparison currencies
-			if (datasetSide == "right") {
-				currencyButtons[i].addEventListener("click", function(e) {
-					currencies.push(currencyButtons[i].getAttribute("value"));
-					d3.select("#options-menu")
-						.attr("hidden", true);
-					revealRightDataset();
-					main();
-				});
-			}
+		if (choices == covidChoices){
+			temp.addEventListener("mousedown", function(e) {
+				if (countries.includes(choiceIDs[choice])) {
+					//swaps last element with this element
+					countries[countries.indexOf(choiceIDs[choice])] = countries[countries.length - 1];
+					// removes this element
+					console.log(countries.pop());
+				}
+				else {
+					countries.push(choiceIDs[choice]);
+				}
+				console.log(countries);
+			})
 		}
 	}
-	else if (keyword == "Covid") {
-		for (let i = 0; i < covidChoices.length; i+=1) {
-			if (!(countries.includes(covidChoices[i]))) {
-				d3.select("#options-menu")
-					.select("div")
-					.append("a")
-					.text(covidChoices[i])
-					.attr("class", "dropdown-item")
-					.attr("value", covidChoices[i]);
-			}
-		}
-		var countryButtons = document.getElementById("options-menu").getElementsByTagName("a");
-		for (let i = 0; i < countryButtons.length; i += 1) {
-			// sets baseline country
-			if (datasetSide == "left") {
-				countryButtons[i].addEventListener("click", function(e) {
-					covid_data = countryButtons[i].getAttribute("value");
-					d3.select("#options-menu")
-						.attr("hidden", true);
-					revealRightDataset();
-					main();
-				});
-			}
-			// adds comparison currencies
-			if (datasetSide == "right") {
-				countryButtons[i].addEventListener("click", function(e) {
-					countries.push(countryButtons[i].getAttribute("value"));
-					d3.select("#options-menu")
-						.attr("hidden", true);
-					revealRightDataset();
-					main();
-				});
-			}
-		}
-		}
 }
 
-// function to reveal Right Dataset and build options
-const revealRightDataset = function() {
-	d3.select("#right-dataset")
-		.attr("hidden", null);
+const createCheckboxes = function() {
+	createCheckboxesOf("#left-input-col", currencyChoices);
+	createCheckboxesOf("#right-input-col", covidChoices);
 }
+
+createCheckboxes()
+
+const graphButton = document.getElementById("graph-button");
+graphButton.addEventListener("click", function(e) {
+	main();
+})
