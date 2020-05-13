@@ -1,6 +1,8 @@
 from flask import *
-from utl.dataMaker import *
-
+try:
+    from app.utl.dataMaker import *
+except:
+    from utl.dataMaker import *
 
 app = Flask(__name__)
 

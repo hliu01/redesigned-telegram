@@ -115,7 +115,7 @@ main = function() {
 	console.log(currency_base, currencies, countries);
 }
 
-const covidChoices = ["US",
+const covidChoices = ["United States",
 	"Germany",
 	"United Kingdom",
 	"France",
