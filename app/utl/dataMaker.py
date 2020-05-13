@@ -1,4 +1,10 @@
 import sqlite3
+from pathlib import Path
+
+# get path to data folder as posixpath
+datadir = Path(__file__).resolve().parents[1]
+# convert to a string form
+datadir = datadir.as_posix();
 
 def makeData(dataType, country, startDate, endDate, cell):
     if startDate < "2020-01-22" and endDate > "2020-05-10":
@@ -15,7 +21,7 @@ def makeData(dataType, country, startDate, endDate, cell):
 
 
 def covid(country, startDate, endDate, cell):
-    db = sqlite3.connect("data/boop.db")
+    db = sqlite3.connect(datadir + "/data/boop.db")
     c = db.cursor()
     print('covid ' + startDate + ":" + endDate)
     idx = c.execute('SELECT id FROM countries WHERE name="{}";'.format(country)).fetchall()[0][0]

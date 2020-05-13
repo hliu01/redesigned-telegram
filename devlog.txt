@@ -181,3 +181,8 @@ xiedengD -- 2020-05-12 20:21
 xiedengD -- 2020-05-12 20:27
     - event listener added to button
     - slight updates to look
+
+xiedengD -- 2020-05-13 10:29
+    - debug: call to dataMaker.py from __init__.py
+      ~ dataMaker.py could not reach data/ from utl/
+      ~ pathlib used
