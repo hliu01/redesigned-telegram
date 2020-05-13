@@ -172,3 +172,7 @@ xiedengD -- 2020-05-12 20:17
 
 xiedengD -- 2020-05-12 20:21
     - added checkbox tracking to currency
+
+xiedengD -- 2020-05-12 20:27
+    - event listener added to button
+    - slight updates to look

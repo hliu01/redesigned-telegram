@@ -116,7 +116,7 @@ const covidChoices = ["US",
 	"Japan",
 	"China"];
 
-const currencyChoices = {"USD":"United States Dollar",
+const currencyChoices = {
 	"EUR":"Euro",
 	"GBP":"British Pounds",
 	"JPY":"Japanese Yen",
@@ -180,9 +180,9 @@ const createCheckboxesOf = function(sideID, choices) {
 			temp.addEventListener("mousedown", function(e) {
 				if (currencies.includes(choiceIDs[choice])) {
 					//swaps last element with this element
-					currencies[currencies.indexOf(choiceIDs[choice])] = currencies[currencies.length - 1]
+					currencies[currencies.indexOf(choiceIDs[choice])] = currencies[currencies.length - 1];
 					// removes this element
-					console.log(currencies.pop())
+					console.log(currencies.pop());
 				}
 				else {
 					currencies.push(choiceIDs[choice]);
@@ -194,9 +194,9 @@ const createCheckboxesOf = function(sideID, choices) {
 			temp.addEventListener("mousedown", function(e) {
 				if (countries.includes(choiceIDs[choice])) {
 					//swaps last element with this element
-					countries[countries.indexOf(choiceIDs[choice])] = countries[countries.length - 1]
+					countries[countries.indexOf(choiceIDs[choice])] = countries[countries.length - 1];
 					// removes this element
-					console.log(countries.pop())
+					console.log(countries.pop());
 				}
 				else {
 					countries.push(choiceIDs[choice]);
@@ -213,3 +213,8 @@ const createCheckboxes = function() {
 }
 
 createCheckboxes()
+
+const graphButton = document.getElementById("graph-button");
+graphButton.addEventListener("click", function(e) {
+	main();
+})
