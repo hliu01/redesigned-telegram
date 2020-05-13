@@ -176,10 +176,20 @@ const createCheckboxesOf = function(sideID, choices) {
 	// adds Event listeners to check boxes
 	for (let choice in choiceIDs) {
 		temp = document.getElementById(choiceIDs[choice]).parentElement;
-		temp.addEventListener("mousedown", function(e) {
-	    temp.setAttribute("checked", !(temp.getAttribute("checked") == "true"));
-	    console.log("" + choiceIDs[choice]);
-		})
+		if (choices == covidChoices){
+			temp.addEventListener("mousedown", function(e) {
+				if (countries.includes(choiceIDs[choice])) {
+					//swaps last element with this element
+					countries[countries.indexOf(choiceIDs[choice])] = countries[countries.length - 1]
+					// removes this element
+					console.log(countries.pop())
+				}
+				else {
+					countries.push(choiceIDs[choice]);
+				}
+				console.log(countries);
+			})
+		}
 	}
 }
 

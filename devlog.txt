@@ -161,8 +161,11 @@ xiedengD -- 2020-05-12 17:20
 xiedengD -- 2020-05-12 18:11
     - added styling to input UI
 
-xiedengD -- 2020-05-12 21:22
+xiedengD -- 2020-05-12 19:22
     - have checkbox addition working
 
-xiedengD -- 2020-05-12 21:57
+xiedengD -- 2020-05-12 19:57
     - added checkbox tracking
+
+xiedengD -- 2020-05-12 20:17
+    - changed checkbox tracking to update array variables
