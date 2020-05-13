@@ -173,6 +173,14 @@ const createCheckboxesOf = function(sideID, choices) {
 		.text(function (d) {
 			return d;
 		});
+	// adds Event listeners to check boxes
+	for (let choice in choiceIDs) {
+		temp = document.getElementById(choiceIDs[choice]).parentElement;
+		temp.addEventListener("mousedown", function(e) {
+	    temp.setAttribute("checked", !(temp.getAttribute("checked") == "true"));
+	    console.log("" + choiceIDs[choice]);
+		})
+	}
 }
 
 const createCheckboxes = function() {
