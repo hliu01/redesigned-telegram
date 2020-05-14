@@ -186,3 +186,8 @@ xiedengD -- 2020-05-13 10:29
     - debug: call to dataMaker.py from __init__.py
       ~ dataMaker.py could not reach data/ from utl/
       ~ pathlib used
+
+xiedengD -- 2020-05-13 22:48
+    - implemented dropdowns to change paramters for:
+      ~ covid_parameter
+      ~ currency_base 

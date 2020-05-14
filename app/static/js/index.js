@@ -7,8 +7,8 @@ graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 // SET BY USER IN PRODUCTION
 var currency_base = "USD";
 const currencies = [];
-const covid_param = "confirmed";
-var countries = [];
+var covid_param = "confirmed";
+const countries = [];
 const start = "2020-01-20";
 const end = "2020-04-20";
 
@@ -124,10 +124,17 @@ const covidChoices = ["United States",
 	"China"];
 
 const currencyChoices = {
+	"USD":"United States Dollar",
 	"EUR":"Euro",
 	"GBP":"British Pounds",
 	"JPY":"Japanese Yen",
 	"CNY":"Chinese Yuan"};
+
+const parameterChoices = {
+	'deaths':'Deaths',
+	'confirmed':'Confirmed Cases',
+	'recovered':'Recovered'
+}
 
 // creates options based on the input
 // #*-input-col and one of the constants *Choices
@@ -189,12 +196,11 @@ const createCheckboxesOf = function(sideID, choices) {
 					//swaps last element with this element
 					currencies[currencies.indexOf(choiceIDs[choice])] = currencies[currencies.length - 1];
 					// removes this element
-					console.log(currencies.pop());
+					currencies.pop();
 				}
 				else {
 					currencies.push(choiceIDs[choice]);
 				}
-				console.log(currencies);
 			})
 		}
 		if (choices == covidChoices){
@@ -203,24 +209,63 @@ const createCheckboxesOf = function(sideID, choices) {
 					//swaps last element with this element
 					countries[countries.indexOf(choiceIDs[choice])] = countries[countries.length - 1];
 					// removes this element
-					console.log(countries.pop());
+					countries.pop();
 				}
 				else {
 					countries.push(choiceIDs[choice]);
 				}
-				console.log(countries);
 			})
 		}
 	}
 }
 
+const createDropRights = function (dropRightTag, choices) {
+	var choiceIDs = Object.keys(choices);
+	var choicelabels = Object.values(choices);
+	//creating tag
+	d3.select(dropRightTag)
+		.select(".dropdown-menu")
+		.selectAll("a")
+		.data(choiceIDs).enter()
+		.append("a")
+			.attr("class", "dropdown-item")
+			.attr("id", function(d) {
+				return d;
+			})
+	d3.select(dropRightTag)
+		.select(".dropdown-menu")
+		.selectAll("a")
+		.data(choicelabels)
+		.text(function(d){
+			return d;
+		})
+	// adding event listeners
+	for (let choice in choiceIDs) {
+		if (dropRightTag == "#dropdownCurrency") {
+			temp = document.getElementById(choiceIDs[choice]);
+			temp.addEventListener("click", function(e) {
+				currency_base=choiceIDs[choice];
+			})
+		}
+		else if (dropRightTag == "#dropdownParameter") {
+			temp = document.getElementById(choiceIDs[choice]);
+			temp.addEventListener("click", function(e) {
+				covid_param=choiceIDs[choice];
+			})
+		}
+	}
+}
+
+// fills in checkboxes
 // fills in area for checkboxes
-const createCheckboxes = function() {
+const fillInButtons = function() {
+	createDropRights("#dropdownCurrency", currencyChoices);
+	createDropRights("#dropdownParameter", parameterChoices);
 	createCheckboxesOf("#left-input-col", covidChoices);
 	createCheckboxesOf("#right-input-col", currencyChoices);
 }
 
-createCheckboxes()
+fillInButtons()
 
 const graphButton = document.getElementById("graph-button");
 graphButton.addEventListener("click", function(e) {
