@@ -194,3 +194,6 @@ xiedengD -- 2020-05-13 22:48
 
 xiedengD -- 2020-05-13 22:55
     - graph now clears when button is clicked.
+
+xiedengD -- 2020-05-13 23:31
+    - buttons now change according to paramters

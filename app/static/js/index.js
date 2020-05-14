@@ -5,9 +5,9 @@ graph1.setAttribute("width", graph1Container.offsetWidth - 40);
 
 // EXAMPLES AS DEFAULT
 // SET BY USER IN PRODUCTION
-var currency_base = "USD";
+var currency_base = "";
 const currencies = [];
-var covid_param = "confirmed";
+var covid_param = "";
 const countries = [];
 const start = "2020-01-20";
 const end = "2020-04-20";
@@ -245,12 +245,18 @@ const createDropRights = function (dropRightTag, choices) {
 			temp = document.getElementById(choiceIDs[choice]);
 			temp.addEventListener("click", function(e) {
 				currency_base=choiceIDs[choice];
+				d3.select(dropRightTag)
+					.select("a")
+					.text(currencyChoices[currency_base]);
 			})
 		}
 		else if (dropRightTag == "#dropdownParameter") {
 			temp = document.getElementById(choiceIDs[choice]);
 			temp.addEventListener("click", function(e) {
 				covid_param=choiceIDs[choice];
+				d3.select(dropRightTag)
+					.select("a")
+					.text(parameterChoices[covid_param]);
 			})
 		}
 	}
