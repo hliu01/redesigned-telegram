@@ -214,9 +214,10 @@ const createCheckboxesOf = function(sideID, choices) {
 	}
 }
 
+// fills in area for checkboxes
 const createCheckboxes = function() {
-	createCheckboxesOf("#left-input-col", currencyChoices);
-	createCheckboxesOf("#right-input-col", covidChoices);
+	createCheckboxesOf("#left-input-col", covidChoices);
+	createCheckboxesOf("#right-input-col", currencyChoices);
 }
 
 createCheckboxes()
