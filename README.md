@@ -8,6 +8,8 @@ P04: Let the Data Speak
 
 2020-05-11
 
+### [video demo here](https://youtu.be/os1MHd45kDM)
+
 
 # Roster
 Henry (PM)
