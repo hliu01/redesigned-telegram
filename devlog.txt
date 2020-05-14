@@ -190,4 +190,7 @@ xiedengD -- 2020-05-13 10:29
 xiedengD -- 2020-05-13 22:48
     - implemented dropdowns to change paramters for:
       ~ covid_parameter
-      ~ currency_base 
+      ~ currency_base
+
+xiedengD -- 2020-05-13 22:55
+    - graph now clears when button is clicked.

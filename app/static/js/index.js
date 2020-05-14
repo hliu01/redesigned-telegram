@@ -112,7 +112,7 @@ main = function() {
 		}
 	);
 
-	console.log(currency_base, currencies, countries);
+	document.getElementById("graph1").innerHTML = "";
 }
 
 const covidChoices = ["United States",
